@@ -1,6 +1,6 @@
 package rummikub;
 
-public enum Color {
+public enum TileColor {
 	RED("Red"),
 	BLUE("Blue"),
 	ORANGE("Orange"),
@@ -8,7 +8,7 @@ public enum Color {
 	
 	private final String colorText;
 	
-	private Color(String colorText) {
+	private TileColor(String colorText) {
 		this.colorText = colorText;
 	}
 	

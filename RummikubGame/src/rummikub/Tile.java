@@ -1,11 +1,10 @@
 package rummikub;
 
-public class Card {
-	private Color color;
-
+public class Tile {
+	private TileColor color;
 	private int value;
 	
-	public Card(Color color, int value) {
+	public Tile(TileColor color, int value) {
 		this.color= color;
 		this.value=value;	
 	}
