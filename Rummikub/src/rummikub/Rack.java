@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Rack {
 
-	private static LinkedList<Tiles> rack;
+	private LinkedList<Tiles> rack;
 
 	public Rack() {
 		for (int i = 0; i < 14; i++) {
