@@ -1,11 +1,28 @@
 package rummikub;
 
-import java.util.List;
+import java.util.LinkedList;
 
 public class Rack {
-	private List<Tile> tiles;
-	
+
+	private LinkedList<Tiles> rack;
+
 	public Rack() {
-		
+		for (int i = 0; i < 14; i++) {
+			rack.add(AllTiles.popFromStack());
+		}
+	}
+
+	public LinkedList<Tiles> getInstance() {
+		return rack;
+	}
+
+	@Override
+	public String toString() {
+		String output = "[ ";
+		for (Tiles t : rack) {
+			output += t + " ";
+		}
+		output += "]";
+		return output;
 	}
 }
