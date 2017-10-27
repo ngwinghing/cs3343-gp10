@@ -4,35 +4,39 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 public class AllTiles {
-
-	// singleton
-	private static LinkedList<Tiles> allTiles;
+	
+	private LinkedList<Tiles> allTiles = new LinkedList<Tiles>();
 
 	// constructor
 	public AllTiles() {
-		allTiles = new LinkedList<Tiles>();
-
 		// 104 tiles
-		for (int i = 0; i < 26; i++)
+		for (int i = 0; i < 13; i++) {
 			for (Color c : Color.values()) {
-				if (c == Color.Joker)
+				if (c == Color.Joker) {
 					continue;
+				}
+				allTiles.add(new Tiles(i % 13 + 1, c));
 				allTiles.add(new Tiles(i % 13 + 1, c));
 			}
+		}
 
 		// 2 Jokers
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 2; i++) {
 			allTiles.add(new Tiles(i + 1, Color.Joker));
-
+		}
+		
 		Collections.shuffle(allTiles);
 	}
-
-	public static LinkedList<Tiles> getInstance() {
-		return allTiles;
-
-	}
 	
-	public static Tiles popFromStack(){
+	public Tiles popFromStack() {
 		return allTiles.pop();
 	}
+	
+	public @Override String toString() {
+		for (Tiles t: allTiles) {
+			System.out.println(t);
+		}
+		return "";	
+	}
+	
 }

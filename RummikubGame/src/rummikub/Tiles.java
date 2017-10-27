@@ -20,8 +20,8 @@ public class Tiles {
 		return this.value;
 	}
 	
-	public String toString(){
-		return color.toString()+value;
+	public @Override String toString() {
+		return "[ " + color + " " + value + " ] ";
 	}
 	
 	

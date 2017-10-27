@@ -4,20 +4,14 @@ import java.util.LinkedList;
 
 public class Rack {
 
-	private LinkedList<Tiles> rack;
+	public LinkedList<Tiles> rack;
 
 	public Rack() {
-		for (int i = 0; i < 14; i++) {
-			rack.add(AllTiles.popFromStack());
-		}
-		// sort
-		
-		
-		// compare, sort by color then no.
+		rack = new LinkedList<Tiles>();
 	}
-
-	public LinkedList<Tiles> getInstance() {
-		return rack;
+	
+	public void rackSetUp(Tiles t) {
+		rack.add(t);
 	}
 
 	@Override

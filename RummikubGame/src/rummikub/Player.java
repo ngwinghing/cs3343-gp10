@@ -14,6 +14,7 @@ public class Player {
 		return name;
 	}
 	
-	
-
+	public void addTileToRack(Tiles t) {
+		rack.rackSetUp(t);
+	}
 }
