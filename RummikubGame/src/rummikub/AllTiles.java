@@ -35,6 +35,4 @@ public class AllTiles {
 	public static Tiles popFromStack(){
 		return allTiles.pop();
 	}
-//ignore
-    //ffff
 }

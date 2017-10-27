@@ -10,11 +10,12 @@ public enum Color {
 	@Override
 	public String toString(){
 		switch(this){
-			case Black	: return "Blk";
-			case Blue	: return "Blu";
+			case Black	: return "Black";
+			case Blue	: return "Blue";
 			case Red	: return "Red";
-			case Yellow	: return "Yel";
-			default		: return "Jok";
+			case Yellow	: return "Yellow";
+			case Joker	: return "Joker";
+			default: return "";
 		}
 	}
 }

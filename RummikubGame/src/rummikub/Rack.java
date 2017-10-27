@@ -10,6 +10,10 @@ public class Rack {
 		for (int i = 0; i < 14; i++) {
 			rack.add(AllTiles.popFromStack());
 		}
+		// sort
+		
+		
+		// compare, sort by color then no.
 	}
 
 	public LinkedList<Tiles> getInstance() {
