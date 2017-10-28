@@ -32,6 +32,12 @@ public class AllTiles {
 		return allTiles.pop();
 	}
 	
+	public boolean isEmpty() {
+		if (allTiles.isEmpty())
+			return true;
+		return false;
+	}
+	
 	public @Override String toString() {
 		for (Tiles t: allTiles) {
 			System.out.println(t);
