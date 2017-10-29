@@ -28,7 +28,7 @@ public class Player {
 	}
 	
 	public void addTileToRack(Tiles t) {
-		rack.rackSetUp(t);
+		rack.addTile(t);
 	}
 
 	public boolean notHavingTilesInRack() {
