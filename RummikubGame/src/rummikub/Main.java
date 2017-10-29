@@ -44,6 +44,12 @@ public class Main {
 		case "2":
 			game.addSetsToPool(p);
 			break;
+		case "3":
+			p.sortByNumber();
+			break;	
+		case "4":
+			p.sortByColor();
+			break;
 		default:
 			System.out.println("Please input an avaliable option number.");
 			game.availableOptions(p);

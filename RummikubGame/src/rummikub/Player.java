@@ -1,18 +1,13 @@
 package rummikub;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
 	String name;
 	Rack rack;
 	boolean firstMove = true;
-	List<Option> options;
 
 	public Player(String name) {
 		this.name = name;
 		rack = new Rack();
-		options = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -27,7 +22,7 @@ public class Player {
 		return firstMove;
 	}
 	
-	public void addTileToRack(Tiles t) {
+	public void addTileToRack(Tile t) {
 		rack.addTile(t);
 	}
 
@@ -35,5 +30,13 @@ public class Player {
 		if (rack.isEmpty())
 			return true;
 		return false;
+	}
+
+	public void sortByNumber() {
+		rack.sortByNumber();
+	}
+	
+	public void sortByColor() {
+		rack.sortByColor();
 	}
 }
