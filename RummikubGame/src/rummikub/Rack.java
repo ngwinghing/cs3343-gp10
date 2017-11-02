@@ -50,8 +50,8 @@ public class Rack {
 		return false;
 	}
 	
-	public boolean overTwenty() {
-		if (rack.size()>20) {
+	public boolean overTwentyFour() {
+		if (rack.size()>24) {
 			return true;
 		}
 		return false;

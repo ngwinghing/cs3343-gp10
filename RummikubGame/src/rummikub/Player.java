@@ -33,8 +33,8 @@ public class Player {
 		return false;
 	}
 	
-	public boolean havingTwentyTilesInRack() {
-		if (rack.overTwenty())
+	public boolean havingTwentyFourTilesInRack() {
+		if (rack.overTwentyFour())
 			return true;
 		return false;
 	}

@@ -60,19 +60,22 @@ public class Game {
 
 	public boolean notEnd() {
 		if (allTiles.isEmpty()) {
+			System.out.println("All tiles were drawn.");
 			return false;
 		}
 		
 		for (Player p: players) {
 			if (p.notHavingTilesInRack()) {
-				System.out.println("Used all tiles, win!");
+				System.out.println("Used all tiles from rack, win!");
 				return false;
 			}
 			
-			else if (p.havingTwentyTilesInRack()){
-				System.out.println("Exceed 20 cards, lose!");
+			else if (p.havingTwentyFourTilesInRack()){
+				System.out.println("Exceed 24 cards in rack, lose!");
 				return false;
 			}
+			
+		
 		}
 		return true;
 	}
