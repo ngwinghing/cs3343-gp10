@@ -49,4 +49,13 @@ public class Rack {
 		}
 		return false;
 	}
+	
+	public boolean overTwenty() {
+		if (rack.size()>20) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 }
