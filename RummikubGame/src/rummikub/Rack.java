@@ -15,7 +15,7 @@ public class Rack {
 		rack.add(t);
 	}
 	
-	private Tile getTile(int index){
+	public Tile getTile(int index){
 		return rack.get(index);
 	}
 	
@@ -48,5 +48,9 @@ public class Rack {
 			return true;
 		}
 		return false;
+	}
+
+	public void removeTile(Tile t) {
+		rack.remove(t);
 	}
 }

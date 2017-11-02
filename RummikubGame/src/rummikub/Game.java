@@ -49,13 +49,13 @@ public class Game {
 		p.addTileToRack(allTiles.popFromStack());
 	}
 	
-	public void addSetsToPool(Player p) {
-		//pool add tile set
-	}
-
-	public void chooseOptions(Player p, String option) {
+	public void addSetsToPool(Player p, List<Integer> num) {
 		
-
+		for (int i: num) {
+			
+		}
+		TileSet ts = new TileSet();
+		pool.addSetsToPool(ts);
 	}
 
 	public boolean notEnd() {
@@ -68,5 +68,26 @@ public class Game {
 			}
 		}
 		return true;
+	}
+	
+	private boolean checkRun(List<Tile> tile) {
+		return true;
+	}
+	
+	private boolean checkGroup(List<Tile> tile) {
+		return false;
+	}
+	
+	public boolean checkIfTileSetAvailable(List<Tile> tiles) {
+		boolean run = checkRun(tiles);
+		boolean group = checkGroup(tiles);
+		if (run && group)
+			return false;
+		else if (run)
+			return true;
+		else if (group)
+			return true;
+		else
+			return false;
 	}
 }

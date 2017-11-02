@@ -7,21 +7,25 @@ import java.util.List;
 
 
 public class Pool {
-	private List<List<TileSet>> sets = new ArrayList<>();
+	private List<TileSet> sets = new ArrayList<>();
 	
 	public Pool() {
 		
 	}
 	
-	public void addSetsToPool(List<TileSet> s) {
-		sets.add(s);
+	public void addSetsToPool(TileSet ts) {
+		sets.add(ts);
+	}
+	
+	public void takeTileFromTileSet(Tile t, int tileSetCode) {
+		
 	}
 	
 	@Override
 	public String toString() {
 		String output = "";
 		int i = 1;
-		for (List<TileSet> s : sets) {
+		for (TileSet s : sets) {
 			output += i + ". \t";
 			output += s + " \n";
 			i++;
