@@ -62,8 +62,15 @@ public class Game {
 		if (allTiles.isEmpty()) {
 			return false;
 		}
+		
 		for (Player p: players) {
 			if (p.notHavingTilesInRack()) {
+				System.out.println("Used all tiles, win!");
+				return false;
+			}
+			
+			else if (p.havingTwentyTilesInRack()){
+				System.out.println("Exceed 20 cards, lose!");
 				return false;
 			}
 		}
