@@ -62,8 +62,9 @@ public class Main {
 				if (valid) {
 					TileSet set = new TileSet(tmpTiles);
 					game.addSetToPool(set);
+					//remove the tiles from the player
+					p.removeTileSet(tmpTiles);
 				}
-				//remove the tiles from the player
 				
 				break;
 			case "3":

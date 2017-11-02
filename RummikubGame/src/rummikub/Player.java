@@ -1,5 +1,7 @@
 package rummikub;
 
+import java.util.List;
+
 public class Player {
 	String name;
 	Rack rack;
@@ -49,5 +51,10 @@ public class Player {
 
 	public Tile getTileByIndex(int i) {
 		return rack.getTile(i);
+	}
+
+	public void removeTileSet(List<Tile> set) {
+		for (Tile t: set)
+			rack.removeTile(t);
 	}
 }

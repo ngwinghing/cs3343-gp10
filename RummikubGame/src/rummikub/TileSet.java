@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileSet {
-	private List<List<Tile>> sets;
+	private List<Tile> sets;
 	
 	public TileSet(List<Tile> tile) {
 		sets = new ArrayList<>();
-		sets.add(tile);
+		sets.addAll(tile);
 	}
 
-	public List<List<Tile>> getSets() {
+	public List<Tile> getSets() {
 		return sets;
 	}
 	
 	@Override
 	public String toString() {
 		String output = "";
-		for (List<Tile> t : sets) {
-			output += t + " \n";
+		for (Tile t : sets) {
+			output += t + " ";
 		}
 		if (output == "") {
 			return "No Tile.";
