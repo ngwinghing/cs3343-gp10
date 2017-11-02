@@ -26,33 +26,37 @@ public class Main {
 			game.distributeTile();
 
 			do {
-
 				System.out.println("\nPool: ");
 				game.printPool();
 
 				System.out.println("\nYour Rack: ");
 				System.out.println(p.rack);
-				
+
 				System.out.println("-----------------------------");
 				System.out.println("Please choose your options: ");
 				System.out.println("-----------------------------");
-				game.availableOptions(p);
+				game.availableOptions();
 				System.out.println("-----------------------------");
-				
+
 				String option = scanner.nextLine();
 
 				switch (option) {
 				case "1":
 					game.draw(p);
 					break;
+					
 				case "2":
-					System.out.println("\nPlease select the numbers of your tiles you want to play.");
+					System.out.println("Please select the numbers of your tiles you want to play.\n*Note: Seperate by spaces.");
 					String input = scanner.nextLine();
-					String[] numbers = input.split(" "); 
+					String[] numbers = input.split(" ");
 					List<Tile> tmpTiles = new ArrayList<Tile>();
 					for (int i = 0; i < numbers.length; i++) {
-						Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
-						tmpTiles.add(t);
+						try {
+							Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
+							tmpTiles.add(t);
+						} catch (NumberFormatException e) {
+							System.out.println("Only numbers are avaliable, please retry.");
+						}
 					}
 					// validate user inputed tiles
 					boolean valid = game.checkIfTileSetAvailable(tmpTiles);
@@ -65,19 +69,22 @@ public class Main {
 						p.removeTileSet(tmpTiles);
 					}
 					break;
+					
 				case "3":
 					p.sortByNumber();
 					break;
+					
 				case "4":
 					p.sortByColor();
 					break;
+					
 				default:
 					System.out.println("Please input an avaliable option number.");
-					game.availableOptions(p);
 				}
 				System.out.println("\n#############################");
 
 			} while (game.notEnd());
+
 			System.out.println("Replay? (y/n)");
 			String input = scanner.nextLine();
 			switch (input) {
