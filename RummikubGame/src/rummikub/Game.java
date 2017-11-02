@@ -30,7 +30,7 @@ public class Game {
 		}
 	}
 
-	public void availableOptions(Player p) {
+	public void availableOptions() {
 		String options = "";
 		options += "1. Draw\n";
 		options += "2. Play a set\n";
