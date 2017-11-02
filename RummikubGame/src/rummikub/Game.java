@@ -12,7 +12,6 @@ public class Game {
 		players = new ArrayList<Player>();
 		allTiles = new AllTiles();
 		pool = new Pool();
-		//System.out.println("\nNew Game Start!");
 	}
 
 	public void addPlayer(Player p) {
