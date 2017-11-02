@@ -49,13 +49,8 @@ public class Game {
 		p.addTileToRack(allTiles.popFromStack());
 	}
 	
-	public void addSetsToPool(Player p) {
-		//pool add tile set
-	}
-
-	public void chooseOptions(Player p, String option) {
-		
-
+	public void addSetsToPool(TileSet set) {
+		pool.addSetToPool(set);
 	}
 
 	public boolean notEnd() {
@@ -69,14 +64,36 @@ public class Game {
 				System.out.println("Used all tiles from rack, win!");
 				return false;
 			}
-			
 			else if (p.havingTwentyFourTilesInRack()){
 				System.out.println("Exceed 24 cards in rack, lose!");
 				return false;
 			}
-			
-		
 		}
 		return true;
+	}
+	
+	private boolean checkRun(List<Tile> tile) {
+		return true;
+	}
+	
+	private boolean checkGroup(List<Tile> tile) {
+		return false;
+	}
+	
+	public boolean checkIfTileSetAvailable(List<Tile> tiles) {
+		boolean run = checkRun(tiles);
+		boolean group = checkGroup(tiles);
+		if (run && group)
+			return false;
+		else if (run)
+			return true;
+		else if (group)
+			return true;
+		else
+			return false;
+	}
+
+	public void addSetToPool(TileSet set) {
+		pool.addSetToPool(set);
 	}
 }

@@ -15,7 +15,7 @@ public class Rack {
 		rack.add(t);
 	}
 	
-	private Tile getTile(int index){
+	Tile getTile(int index){
 		return rack.get(index);
 	}
 	
@@ -51,11 +51,9 @@ public class Rack {
 	}
 	
 	public boolean overTwentyFour() {
-		if (rack.size()>24) {
+		if (rack.size()==24) {
 			return true;
 		}
 		return false;
 	}
-	
-	
 }
