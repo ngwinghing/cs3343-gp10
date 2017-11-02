@@ -15,6 +15,10 @@ public class Rack {
 		rack.add(t);
 	}
 	
+	public void removeTile(Tile t) {
+		rack.remove(t);
+	}
+	
 	Tile getTile(int index){
 		return rack.get(index);
 	}
