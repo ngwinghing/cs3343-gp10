@@ -32,6 +32,7 @@ public class Rack {
 	}
 	
 	public void sortByColor() {
+		Collections.sort(rack);
 		Collections.sort(rack, Tile.TileColorComparator);
 	}
 

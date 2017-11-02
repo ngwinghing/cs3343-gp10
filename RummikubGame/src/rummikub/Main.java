@@ -47,11 +47,11 @@ public class Main {
 					break;
 				case "2":
 					System.out.println("\nPlease select the numbers of your tiles you want to play.");
-					String input = scanner.nextLine(); // get the entire line after the prompt
-					String[] numbers = input.split(" "); // split by spaces
+					String input = scanner.nextLine();
+					String[] numbers = input.split(" "); 
 					List<Tile> tmpTiles = new ArrayList<Tile>();
 					for (int i = 0; i < numbers.length; i++) {
-						Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);// Integer.parseInt(numbers[i])
+						Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
 						tmpTiles.add(t);
 					}
 					// validate user inputed tiles
