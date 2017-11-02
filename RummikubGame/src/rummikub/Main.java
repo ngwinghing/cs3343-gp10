@@ -12,6 +12,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		boolean replay = false;
 		do {
+			System.out.println("\n***New Game Start!***\n");
 			System.out.println("What's your name?");
 			// playerName = scanner.nextLine();
 			playerName = "Wing";
@@ -22,11 +23,8 @@ public class Main {
 
 			Game game = new Game();
 			game.addPlayer(p);
-
 			game.distributeTile();
 
-			System.out.println("");
-			boolean notEnd = true;
 			do {
 
 				System.out.println("\nPool: ");
@@ -34,10 +32,13 @@ public class Main {
 
 				System.out.println("\nYour Rack: ");
 				System.out.println(p.rack);
-				System.out.println("----------------------");
-
-				System.out.println("\nPlease choose your options: ");
+				
+				System.out.println("-----------------------------");
+				System.out.println("Please choose your options: ");
+				System.out.println("-----------------------------");
 				game.availableOptions(p);
+				System.out.println("-----------------------------");
+				
 				String option = scanner.nextLine();
 
 				switch (option) {
@@ -87,7 +88,7 @@ public class Main {
 				replay = false;
 				break;
 			default:
-				notEnd = false;
+				replay = false;
 			}
 		} while (replay);
 	}
