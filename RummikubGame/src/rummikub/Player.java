@@ -23,7 +23,8 @@ public class Player {
 	}
 	
 	public void addTileToRack(Tile t) {
-		rack.addTile(t);
+		if(!rack.overTwenty())
+			rack.addTile(t);
 	}
 
 	public boolean notHavingTilesInRack() {
@@ -31,6 +32,14 @@ public class Player {
 			return true;
 		return false;
 	}
+	
+	public boolean havingTwentyTilesInRack() {
+		if (rack.overTwenty())
+			return true;
+		return false;
+	}
+	
+	
 
 	public void sortByNumber() {
 		rack.sortByNumber();
