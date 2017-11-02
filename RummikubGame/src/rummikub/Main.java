@@ -56,6 +56,8 @@ public class Main {
 				}
 				//validate user inputed tiles
 				boolean valid = game.checkIfTileSetAvailable(tmpTiles);
+				System.out.println("Valid? "+valid);
+				
 				//if validated, add to pool
 				if (valid) {
 					TileSet set = new TileSet(tmpTiles);
