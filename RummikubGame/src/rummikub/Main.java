@@ -10,74 +10,85 @@ public class Main {
 
 		String playerName;
 		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("What's your name?");
-		// playerName = scanner.nextLine();
-		playerName = "Wing";
-
-		System.out.println("Welcome, " + playerName);
-
-		Player p = new Player(playerName);
-
-		Game game = Game.getInstance();
-		game.addPlayer(p);
-
-		game.distributeTile();
-
-		System.out.println("");
-
+		boolean replay = false;
 		do {
+			System.out.println("What's your name?");
+			// playerName = scanner.nextLine();
+			playerName = "Wing";
 
-			System.out.println("\nPool: ");
-			game.printPool();
+			System.out.println("Welcome, " + playerName);
 
-			System.out.println("\nYour Rack: ");
-			System.out.println(p.rack);
-			System.out.println("----------------------");
+			Player p = new Player(playerName);
 
-			System.out.println("\nPlease choose your options: ");
-			game.availableOptions(p);
-			String option = scanner.nextLine();
+			Game game = new Game();
+			game.addPlayer(p);
 
-			switch (option) {
-			case "1":
-				game.draw(p);
-				break;
-			case "2":
-				System.out.println("\nPlease select the numbers of your tiles you want to play.");
-				String input = scanner.nextLine();    // get the entire line after the prompt 
-				String[] numbers = input.split(" "); // split by spaces
-				List<Tile> tmpTiles = new ArrayList<Tile>();
-				for (int i=0; i<numbers.length;i++) {
-					System.out.println("Numbers: "+numbers[i]);
-					Tile t = p.getTileByIndex(Integer.parseInt(numbers[i])-1);//Integer.parseInt(numbers[i])
-					System.out.println("Tile selected: "+t);
-					tmpTiles.add(t);
+			game.distributeTile();
+
+			System.out.println("");
+			boolean notEnd = true;
+			do {
+
+				System.out.println("\nPool: ");
+				game.printPool();
+
+				System.out.println("\nYour Rack: ");
+				System.out.println(p.rack);
+				System.out.println("----------------------");
+
+				System.out.println("\nPlease choose your options: ");
+				game.availableOptions(p);
+				String option = scanner.nextLine();
+
+				switch (option) {
+				case "1":
+					game.draw(p);
+					break;
+				case "2":
+					System.out.println("\nPlease select the numbers of your tiles you want to play.");
+					String input = scanner.nextLine(); // get the entire line after the prompt
+					String[] numbers = input.split(" "); // split by spaces
+					List<Tile> tmpTiles = new ArrayList<Tile>();
+					for (int i = 0; i < numbers.length; i++) {
+						Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);// Integer.parseInt(numbers[i])
+						tmpTiles.add(t);
+					}
+					// validate user inputed tiles
+					boolean valid = game.checkIfTileSetAvailable(tmpTiles);
+
+					// if validated, add to pool
+					if (valid) {
+						TileSet set = new TileSet(tmpTiles);
+						game.addSetToPool(set);
+						// remove the tiles from the player
+						p.removeTileSet(tmpTiles);
+					}
+					break;
+				case "3":
+					p.sortByNumber();
+					break;
+				case "4":
+					p.sortByColor();
+					break;
+				default:
+					System.out.println("Please input an avaliable option number.");
+					game.availableOptions(p);
 				}
-				//validate user inputed tiles
-				boolean valid = game.checkIfTileSetAvailable(tmpTiles);
-				System.out.println("Valid? "+valid);
-				
-				//if validated, add to pool
-				if (valid) {
-					TileSet set = new TileSet(tmpTiles);
-					game.addSetToPool(set);
-					//remove the tiles from the player
-					p.removeTileSet(tmpTiles);
-				}
-				
+				System.out.println("\n#############################");
+
+			} while (game.notEnd());
+			System.out.println("Replay? (y/n)");
+			String input = scanner.nextLine();
+			switch (input) {
+			case "y":
+				replay = true;
 				break;
-			case "3":
-				p.sortByNumber();
-				break;
-			case "4":
-				p.sortByColor();
+			case "n":
+				replay = false;
 				break;
 			default:
-				System.out.println("Please input an avaliable option number.");
-				game.availableOptions(p);
+				notEnd = false;
 			}
-			System.out.println("#############################");
-		} while (game.notEnd());
+		} while (replay);
 	}
 }

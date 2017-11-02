@@ -2,7 +2,7 @@ package rummikub;
 
 public class CmdAddPlayer extends RecordedCommand  {
 
-	Game game = Game.getInstance();
+	Game game;
 
 	@Override
 	public void execute(){ 

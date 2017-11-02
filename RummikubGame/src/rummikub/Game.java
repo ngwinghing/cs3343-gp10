@@ -7,17 +7,12 @@ public class Game {
 	private static List<Player> players;
 	private static AllTiles allTiles;
 	private static Pool pool;
-	private static Game instance = new Game();
 
-	private Game() {
+	public Game() {
 		players = new ArrayList<Player>();
 		allTiles = new AllTiles();
 		pool = new Pool();
 		//System.out.println("\nNew Game Start!");
-	}
-	
-	public static Game getInstance() {
-		return instance;
 	}
 
 	public void addPlayer(Player p) {
