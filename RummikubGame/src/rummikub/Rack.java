@@ -15,7 +15,11 @@ public class Rack {
 		rack.add(t);
 	}
 	
-	private Tile getTile(int index){
+	public void removeTile(Tile t) {
+		rack.remove(t);
+	}
+	
+	Tile getTile(int index){
 		return rack.get(index);
 	}
 	
@@ -28,6 +32,7 @@ public class Rack {
 	}
 	
 	public void sortByColor() {
+		Collections.sort(rack);
 		Collections.sort(rack, Tile.TileColorComparator);
 	}
 
@@ -51,11 +56,9 @@ public class Rack {
 	}
 	
 	public boolean overTwentyFour() {
-		if (rack.size()>24) {
+		if (rack.size()==24) {
 			return true;
 		}
 		return false;
 	}
-	
-	
 }

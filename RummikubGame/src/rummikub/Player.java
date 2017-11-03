@@ -1,5 +1,7 @@
 package rummikub;
 
+import java.util.List;
+
 public class Player {
 	String name;
 	Rack rack;
@@ -23,7 +25,7 @@ public class Player {
 	}
 	
 	public void addTileToRack(Tile t) {
-		if(!rack.overTwenty())
+		if(!rack.overTwentyFour())
 			rack.addTile(t);
 	}
 
@@ -38,8 +40,6 @@ public class Player {
 			return true;
 		return false;
 	}
-	
-	
 
 	public void sortByNumber() {
 		rack.sortByNumber();
@@ -47,5 +47,14 @@ public class Player {
 	
 	public void sortByColor() {
 		rack.sortByColor();
+	}
+
+	public Tile getTileByIndex(int i) {
+		return rack.getTile(i);
+	}
+
+	public void removeTileSet(List<Tile> set) {
+		for (Tile t: set)
+			rack.removeTile(t);
 	}
 }
