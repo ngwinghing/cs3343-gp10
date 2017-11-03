@@ -1,1 +1,3 @@
 /bin/
+.megadata*
+*.DS_Store
