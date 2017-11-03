@@ -19,7 +19,7 @@ public class Rack {
 		rack.remove(t);
 	}
 	
-	Tile getTile(int index){
+	public Tile getTile(int index){
 		return rack.get(index);
 	}
 	
