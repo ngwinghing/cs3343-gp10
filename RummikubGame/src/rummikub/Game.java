@@ -38,6 +38,15 @@ public class Game {
 		options += "4. Sort by color\n";
 		System.out.println(options);
 	}
+	
+	public void availablePlayOptions() {
+		String options = "";
+		options += "1. New Set\n";
+		options += "2. Add to Set\n";
+		options += "3. Move tile to new set\n";
+		options += "4. Move to set\n";
+		System.out.println(options);
+	}
 
 	public void draw(Player p) {
 		p.addTileToRack(allTiles.popFromStack());
