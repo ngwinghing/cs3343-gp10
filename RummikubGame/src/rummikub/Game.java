@@ -18,6 +18,10 @@ public class Game {
 		players.add(p);
 	}
 
+	public Pool getPool() {
+		return pool;
+	}
+	
 	public void printPool() {
 		System.out.println(pool);
 	}
@@ -45,6 +49,7 @@ public class Game {
 		options += "2. Add to Set\n";
 		options += "3. Move tile to new set\n";
 		options += "4. Move to set\n";
+		options += "5. End Turn\n";
 		System.out.println(options);
 	}
 
@@ -99,4 +104,5 @@ public class Game {
 	public void addSetToPool(TileSet set) {
 		pool.addSetToPool(set);
 	}
+
 }

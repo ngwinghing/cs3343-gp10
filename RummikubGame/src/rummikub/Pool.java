@@ -5,18 +5,25 @@ import java.util.List;
 
 //a class that contains the tiles that the player played
 
+public class Pool implements Cloneable {
+	private List<TileSet> sets;
 
-public class Pool {
-	private List<TileSet> sets = new ArrayList<>();
-	
 	public Pool() {
-		
+		sets = new ArrayList<>();
 	}
-	
+
 	public void addSetToPool(TileSet set) {
 		sets.add(set);
 	}
 	
+	public void addToSet(int setIndex, Tile tile) {
+		sets.get(setIndex).addToSet(tile);
+	}
+	
+	public void removeFromSet(int setIndex, Tile tile){
+		sets.get(setIndex).removeFromSet(tile);
+	}
+
 	@Override
 	public String toString() {
 		String output = "";
@@ -32,6 +39,9 @@ public class Pool {
 		return output;
 	}
 
-	
+	@Override
+	public Pool clone() throws CloneNotSupportedException {
+		return (Pool) super.clone();
+	}
 
 }

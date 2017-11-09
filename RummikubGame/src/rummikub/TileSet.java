@@ -10,7 +10,15 @@ public class TileSet {
 		sets = new ArrayList<>();
 		sets.addAll(tile);
 	}
-
+	
+	public void addToSet(Tile tile) {
+		sets.add(tile);
+	}
+	
+	public void removeFromSet(Tile tile) {
+		sets.remove(tile);
+	}
+	
 	public List<Tile> getSets() {
 		return sets;
 	}
@@ -26,5 +34,6 @@ public class TileSet {
 		}
 		return output;
 	}
+
 	
 }
