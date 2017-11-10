@@ -55,7 +55,9 @@ public class Game {
 		options += "3. Move tile to new set\n";
 		options += "4. Move to set\n";
 		options += "5. Undo\n";
-		options += "6. End Turn\n";
+		options += "6. Sort by number\n";
+		options += "7. Sort by color\n";
+		options += "8. End Turn\n";
 		System.out.println(options);
 	}
 

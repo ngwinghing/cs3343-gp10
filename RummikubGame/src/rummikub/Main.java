@@ -30,8 +30,7 @@ public class Main {
 				System.out.println("\nPool: ");
 				game.printPool();
 
-				System.out.println("\nYour Rack: ");
-				System.out.println(p.rack);
+				printRackLine(p);
 
 				System.out.println("=====================================");
 				System.out.println("Please choose your options: ");
@@ -75,7 +74,7 @@ public class Main {
 									Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
 									tmpTiles.addToSet(t);
 								} catch (NumberFormatException e) {
-									System.out.println("Only numbers are avaliable, please retry.");
+									System.err.println("Only numbers are avaliable, please retry.");
 								}
 							}
 							// validate user inputed tiles
@@ -85,7 +84,7 @@ public class Main {
 							if (p.isFirstMove() == true){
 								if (game.checkFirstMoveSum(tmpTiles) == false){
 									valid = false;
-									System.out.println("The sum of sll tiles in first move should be larger than 30, please retry.");
+									System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
 								}else if (valid){
 									// change the first move value to false if the set is valid
 									p.changeFirstMove();
@@ -97,6 +96,8 @@ public class Main {
 								game.addSetToPool(tmpTiles);
 								// remove the tiles from the player
 								p.removeTileSet(tmpTiles);
+							} else {
+								System.err.println("Please input valid set again.");
 							}
 							break;
 
@@ -106,7 +107,7 @@ public class Main {
 								System.out.println("Which set in the pool you what to add to?");
 								String interactSetInput = scanner.nextLine();
 								TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
-								System.out.println(
+								System.err.println(
 										"Please select the numbers of your tiles you want to play.\n*Note: Seperate by spaces.");
 								input = scanner.nextLine();
 								numbers = input.split(" ");
@@ -119,7 +120,7 @@ public class Main {
 										}
 								}
 							} catch (NumberFormatException e) {
-								System.out.println("Only numbers are avaliable, please retry.");
+								System.err.println("Only numbers are avaliable, please retry.");
 							}
 							break;
 						case "3":
@@ -132,7 +133,17 @@ public class Main {
 							// 5. Reset
 							break;	
 						case "6":
-							// 6. End Turn
+							// 6. Sort by number
+							p.sortByNumber();
+							printRackLine(p);
+							break;	
+						case "7":
+							// 7. Sort by color
+							p.sortByColor();
+							printRackLine(p);
+							break;	
+						case "8":
+							// 8. End Turn
 							endTurn = true;
 							if (game.validPool(tmpPool)) {
 								List<TileSet> sets = tmpPool.getListSet();
@@ -176,5 +187,10 @@ public class Main {
 				replay = false;
 			}
 		} while (replay);
+	}
+
+	private static void printRackLine(Player p) {
+		System.out.println("\nYour Rack: ");
+		System.out.println(p.rack);
 	}
 }
