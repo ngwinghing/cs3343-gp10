@@ -38,12 +38,18 @@ public class TileSet {
 	public Object clone() throws CloneNotSupportedException {
 		return (TileSet) super.clone();
 	}
-
+	
+	//check each tile color sort by color->check color same?-> check difference by 1? 123
 	private boolean checkRun() {
+		
+		
 		return true;
 	}
 	
+	//check sort by number same? -> check color all different? 111
 	private boolean checkGroup() {
+		
+		
 		return false;
 	}
 	
