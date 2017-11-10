@@ -52,9 +52,34 @@ public class TileSet {
 	
 	//check each tile color sort by color->check color same?-> check difference by 1? 123
 	private boolean checkRun() {
+		sortByColor();
+		int tileValue = 0;
+		Color tileColor = null;
+		boolean sameColor = true;
+		boolean consecutive = true;
+		for(Tile t: sets){
+			if(tileValue == 0) {
+				tileValue = t.getValue();
+			}	
+			
+			
+			if(tileColor == null) {
+                tileColor = t.getColor();
+			}
+			
 		
+			if(t.getValue()!=tileValue++){
+				consecutive = false;
+				break;
+			}
+			
+			if(tileColor != tileColor) {
+				sameColor = false;
+				break;
+             }
 		
-		return false;
+		}
+		return  sameColor && consecutive;
 	}
 	
 	
