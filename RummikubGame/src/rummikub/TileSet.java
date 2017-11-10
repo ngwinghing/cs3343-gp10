@@ -54,7 +54,7 @@ public class TileSet {
 	private boolean checkRun() {
 		
 		
-		return true;
+		return false;
 	}
 	
 	
