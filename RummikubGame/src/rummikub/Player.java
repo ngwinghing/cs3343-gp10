@@ -53,8 +53,8 @@ public class Player {
 		return rack.getTile(i);
 	}
 
-	public void removeTileSet(List<Tile> set) {
-		for (Tile t: set)
+	public void removeTileSet(TileSet set) {
+		for (Tile t: set.getSets())
 			rack.removeTile(t);
 	}
 }

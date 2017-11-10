@@ -6,9 +6,8 @@ import java.util.List;
 public class TileSet {
 	private List<Tile> sets;
 	
-	public TileSet(List<Tile> tile) {
+	public TileSet() {
 		sets = new ArrayList<>();
-		sets.addAll(tile);
 	}
 	
 	public void addToSet(Tile tile) {
@@ -34,6 +33,30 @@ public class TileSet {
 		}
 		return output;
 	}
-
 	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return (TileSet) super.clone();
+	}
+
+	private boolean checkRun() {
+		return true;
+	}
+	
+	private boolean checkGroup() {
+		return false;
+	}
+	
+	public boolean checkIfTileSetAvailable() {
+		boolean run = checkRun();
+		boolean group = checkGroup();
+		if (run && group)
+			return false;
+		else if (run)
+			return true;
+		else if (group)
+			return true;
+		else
+			return false;
+	}
 }

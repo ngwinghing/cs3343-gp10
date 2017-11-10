@@ -40,8 +40,29 @@ public class Pool implements Cloneable {
 	}
 
 	@Override
-	public Pool clone() throws CloneNotSupportedException {
+	public Object clone() throws CloneNotSupportedException {
 		return (Pool) super.clone();
 	}
 
+	public boolean valid() {
+		boolean valid = true;
+		for (TileSet s: sets) {
+			if (!s.checkIfTileSetAvailable()) {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+
+	public List<TileSet> getListSet() {
+		return sets;
+	}
+
+	public void replaceTileSet(List<TileSet> sets) {
+		this.sets = sets;
+	}
+
+	public TileSet getTileSetByIndex(int i) {
+		return sets.get(i);
+	}
 }
