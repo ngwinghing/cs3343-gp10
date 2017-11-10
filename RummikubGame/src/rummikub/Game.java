@@ -7,8 +7,9 @@ public class Game {
 	private static List<Player> players;
 	private static AllTiles allTiles;
 	private static Pool pool;
+	private static Game instance = new Game();
 
-	public Game() {
+	private Game() {
 		players = new ArrayList<Player>();
 		allTiles = new AllTiles();
 		pool = new Pool();
@@ -17,7 +18,15 @@ public class Game {
 	public void addPlayer(Player p) {
 		players.add(p);
 	}
+	
+	public void removePlayer(Player p) {
+		players.remove(p);
+	}
 
+	public Pool getPool() {
+		return pool;
+	}
+	
 	public void printPool() {
 		System.out.println(pool);
 	}
@@ -45,6 +54,8 @@ public class Game {
 		options += "2. Add to Set\n";
 		options += "3. Move tile to new set\n";
 		options += "4. Move to set\n";
+		options += "5. Undo\n";
+		options += "6. End Turn\n";
 		System.out.println(options);
 	}
 
@@ -74,29 +85,37 @@ public class Game {
 		}
 		return true;
 	}
-	
-	private boolean checkRun(List<Tile> tile) {
-		return true;
-	}
-	
-	private boolean checkGroup(List<Tile> tile) {
-		return false;
-	}
-	
-	public boolean checkIfTileSetAvailable(List<Tile> tiles) {
-		boolean run = checkRun(tiles);
-		boolean group = checkGroup(tiles);
-		if (run && group)
-			return false;
-		else if (run)
-			return true;
-		else if (group)
-			return true;
-		else
-			return false;
-	}
 
 	public void addSetToPool(TileSet set) {
 		pool.addSetToPool(set);
+		System.out.println("You have added " + set + "to the pool.");
+	}
+
+	public static Game getInstance() {
+		return instance;
+	}
+
+	public void endGame() {
+		//reset all
+		players.removeAll(players);
+		allTiles = new AllTiles();
+		pool = new Pool();
+	}
+
+	public boolean validPool(Pool p) {
+		return p.valid();
+	}
+
+	public void replacePoolTileSets(List<TileSet> sets) {
+		pool.replaceTileSet(sets);
+	}
+
+	public boolean checkFirstMoveSum(TileSet tmpTiles){
+		int sum = 0;
+		List<Tile> set = tmpTiles.getSets();
+		for(Tile t: set){
+			sum += t.getValue();
+		}
+		return sum >= 30;
 	}
 }
