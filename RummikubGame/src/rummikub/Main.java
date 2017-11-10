@@ -47,6 +47,7 @@ public class Main {
 
 				case "2":
 					boolean endTurn = false;
+					int moved = 0;
 					Pool tmpPool = (Pool) game.getPool().clone();
 					System.out.println("tmpPool = "+tmpPool);
 					do {
@@ -85,7 +86,7 @@ public class Main {
 								if (game.checkFirstMoveSum(tmpTiles) == false){
 									valid = false;
 									System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
-								}else if (valid){
+								} else if (valid) {
 									// change the first move value to false if the set is valid
 									p.changeFirstMove();
 								}
@@ -96,6 +97,7 @@ public class Main {
 								game.addSetToPool(tmpTiles);
 								// remove the tiles from the player
 								p.removeTileSet(tmpTiles);
+								moved++;
 							} else {
 								System.err.println("Please input valid set again.");
 							}
