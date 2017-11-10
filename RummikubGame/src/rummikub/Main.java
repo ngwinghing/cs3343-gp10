@@ -61,6 +61,19 @@ public class Main {
 					// validate user inputed tiles
 					boolean valid = game.checkIfTileSetAvailable(tmpTiles);
 
+					
+					// check sum of tiles if it is first move
+					if (p.isFirstMove() == true){
+						if (game.checkFirstMoveSum(tmpTiles) == false){
+							valid = false;
+							System.out.println("The sum of sll tiles in first move should be larger than 30, please retry.");
+						}else if (valid){
+							// change the first move value to false if the set is valid
+							p.changeFirstMove();
+						}
+					}
+					
+					
 					// if validated, add to pool
 					if (valid) {
 						TileSet set = new TileSet(tmpTiles);

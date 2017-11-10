@@ -86,6 +86,16 @@ public class Game {
 		else
 			return false;
 	}
+	
+	public boolean checkFirstMoveSum(List<Tile> tiles){
+		int sum = 0;
+		for(Tile t: tiles){
+			sum += t.getValue();
+		}
+		return sum >= 30;
+	}
+	
+	
 
 	public void addSetToPool(TileSet set) {
 		pool.addSetToPool(set);
