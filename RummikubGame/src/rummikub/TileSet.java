@@ -73,13 +73,13 @@ public class TileSet {
 				break;
 			}
 			
-			if(tileColor != tileColor) {
+			if(tileColor != t.getColor()) {
 				sameColor = false;
 				break;
              }
 		
 		}
-		return  sameColor && consecutive;
+		return sameColor && consecutive;
 	}
 	
 	
