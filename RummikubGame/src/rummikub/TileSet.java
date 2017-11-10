@@ -60,13 +60,13 @@ public class TileSet {
 	
 	private boolean checkGroup() {
 		sortByNumber();
-		int tileValue;
-		List<Color> colors = new ArrayList<>()
+		int tileValue = 0;
+		List<Color> colors = new ArrayList<>();
 		boolean sameValue = true;
 		boolean differentColor = true;
 		
 		for(Tile t: sets){
-			if(tileValue == null) {
+			if(tileValue == 0) {
 				tileValue = t.getValue();
 			}
 			
