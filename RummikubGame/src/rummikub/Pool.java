@@ -11,13 +11,7 @@ public class Pool implements Cloneable {
 	public Pool() {
 		sets = new ArrayList<>();
 	}
-<<<<<<< HEAD
-	
-	
-	
-=======
 
->>>>>>> master
 	public void addSetToPool(TileSet set) {
 		sets.add(set);
 	}
