@@ -8,7 +8,7 @@ public enum Color {
 	Joker;
 	
 	@Override
-	public String toString(){
+	public String toString() {
 		switch(this){
 			case Black	: return "Black";
 			case Blue	: return "Blue";
