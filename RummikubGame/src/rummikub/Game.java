@@ -17,10 +17,6 @@ public class Game {
 	public void addPlayer(Player p) {
 		players.add(p);
 	}
-	
-	public void removePlayer(Player p) {
-		players.remove(p);
-	}
 
 	public Pool getPool() {
 		return pool;

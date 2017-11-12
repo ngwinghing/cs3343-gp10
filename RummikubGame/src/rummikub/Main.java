@@ -1,6 +1,5 @@
 package rummikub;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -165,11 +164,15 @@ public class Main {
 								List<TileSet> sets = tmpPool.getListSet();
 								game.replacePoolTileSets(sets);
 							} else {
-								System.out.println("Invalid pool, please input again next round.");
+								System.err.println("Invalid pool, please input again next round.");
+							}
+							if (moved == 0) {
+								game.draw(p);
+								System.out.println("\n ** As you have not move any tile, draw one tile for this round.");
 							}
 							break;
 						default:
-							System.out.println("Please input an avaliable option number.");
+							System.err.println("Please input an avaliable option number.");
 						}
 
 					} while (!endTurn);
@@ -187,7 +190,7 @@ public class Main {
 				default:
 					System.out.println("Please input an avaliable option number.");
 				}
-				System.out.println("\n#############################");
+				System.out.println("\n####### --- R O U N D --- #######");
 
 			} while (game.notEnd());
 			game.endGame();
