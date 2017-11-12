@@ -103,6 +103,16 @@ public class Game {
 		allTiles = new AllTiles();
 		pool = new Pool();
 	}
+	
+	public boolean checkFirstMoveSum(List<Tile> tiles){
+		int sum = 0;
+		for(Tile t: tiles){
+			sum += t.getValue();
+		}
+		return sum >= 30;
+	}
+	
+	
 
 	public boolean validPool(Pool p) {
 		return p.valid();

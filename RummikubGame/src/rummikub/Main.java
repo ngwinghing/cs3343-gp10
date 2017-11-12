@@ -157,7 +157,9 @@ public class Main {
 						default:
 							System.out.println("Please input an avaliable option number.");
 						}
+
 					} while (!endTurn);
+
 					break;
 
 				case "3":
