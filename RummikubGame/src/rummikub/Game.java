@@ -65,6 +65,7 @@ public class Game {
 		pool.addSetToPool(set);
 		System.out.println("You have added " + set + "to the pool.");
 	}
+
 	
 	public Tile getTileFromAllTiles(int i) {
 		return allTiles.getTile(i);
@@ -77,14 +78,6 @@ public class Game {
 		pool = new Pool();
 	}
 	
-	public boolean checkFirstMoveSum(List<Tile> tiles){
-		int sum = 0;
-		for(Tile t: tiles){
-			sum += t.getValue();
-		}
-		return sum >= 30;
-	}
-
 	public boolean validPool(Pool p) {
 		return p.valid();
 	}

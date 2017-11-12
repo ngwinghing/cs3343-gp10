@@ -68,9 +68,9 @@ public class sorting {
 	@Test
 	public void test04_colorsort() {
 		Rack rackv1 = new Rack();
-		Tile t1 = new Tile(1, Color.Blue);
+		Tile t1 = new Tile(3, Color.Red);
 		Tile t2 = new Tile(2, Color.Red);
-		Tile t3 = new Tile(3, Color.Red);
+		Tile t3 = new Tile(1, Color.Blue);
 		Tile t4 = new Tile(4, Color.Yellow);
 		rackv1.addTile(t1);
 		rackv1.addTile(t2);
@@ -83,9 +83,9 @@ public class sorting {
 		Tile resv3 = rackv1.getTile(2);
 		Tile resv4 = rackv1.getTile(3);
 
-		assertEquals(resv1, t1);
+		assertEquals(resv1, t3);
 		assertEquals(resv2, t2);
-		assertEquals(resv3, t3);
+		assertEquals(resv3, t1);
 		assertEquals(resv4, t4);
 	}
 
