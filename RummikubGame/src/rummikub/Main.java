@@ -12,17 +12,17 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		boolean replay = false;
 
+		System.out.println("\n***New Game Start!***\n");
+		System.out.println("What's your name?");
+		// playerName = scanner.nextLine();
+		playerName = "Wing";
+
+		System.out.println("Welcome, " + playerName);
+
+		Player p = new Player(playerName);
+
 		do {
-			System.out.println("\n***New Game Start!***\n");
-			System.out.println("What's your name?");
-			// playerName = scanner.nextLine();
-			playerName = "Wing";
-
-			System.out.println("Welcome, " + playerName);
-
-			Player p = new Player(playerName);
-
-			Game game = Game.getInstance();
+			Game game = new Game();
 			game.addPlayer(p);
 			game.distributeTile();
 
@@ -35,7 +35,12 @@ public class Main {
 				System.out.println("=====================================");
 				System.out.println("Please choose your options: ");
 				System.out.println("=====================================");
-				game.availableOptions();
+				String options = "";
+				options += "1. Draw\n";
+				options += "2. Play a set\n";
+				options += "3. Sort by number\n";
+				options += "4. Sort by color\n";
+				System.out.println(options);
 				System.out.println("-------------------------------------");
 
 				String option = scanner.nextLine();
@@ -57,7 +62,16 @@ public class Main {
 						System.out.println("=====================================");
 						System.out.println("2: Please choose your play options: ");
 						System.out.println("=====================================");
-						game.availablePlayOptions();
+						String playOptions = "";
+						playOptions += "1. New Set\n";
+						playOptions += "2. Add to Set\n";
+						playOptions += "3. Move tile to new set\n";
+						playOptions += "4. Move to set\n";
+						playOptions += "5. Undo\n";
+						playOptions += "6. Sort by number\n";
+						playOptions += "7. Sort by color\n";
+						playOptions += "8. End Turn\n";
+						System.out.println(playOptions);
 						System.out.println("-------------------------------------");
 						String playOption = scanner.nextLine();
 
