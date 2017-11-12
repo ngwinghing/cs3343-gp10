@@ -236,8 +236,10 @@ public class test {
 		set.addToSet(t1);
 		set.addToSet(t2);
 		set.addToSet(t3);
+		
+		boolean result = set.checkIfTileSetAvailable();
 
-		assertEquals(true, set.checkIfTileSetAvailable());
+		assertEquals(true, result);
 	}
 
 	@Test
@@ -285,6 +287,22 @@ public class test {
 		set.addToSet(t5);
 		set.addToSet(t6);
 
-		assertEquals(true, set.checkIfTileSetAvailable());
+		assertEquals(false, set.checkIfTileSetAvailable());
 	}
+	
+	@Test
+	public void test18_checkIfTileSetAvailableRun(){
+		Tile t1 = new Tile(11, Color.Blue);
+		Tile t2 = new Tile(12, Color.Blue);
+		Tile t3 = new Tile(13, Color.Yellow);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+		
+		assertEquals(false, set.checkIfTileSetAvailable());
+	}
+	
+	
 }
