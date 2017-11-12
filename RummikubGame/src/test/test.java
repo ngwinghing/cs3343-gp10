@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class test {
 	@Test
-	public void test1_colorsort() {
+	public void test01_colorsort() {
 		Rack rackv1 = new Rack();
 		Tile t1 = new Tile(10, Color.Black);
 		Tile t2 = new Tile(1, Color.Black);
@@ -22,7 +22,7 @@ public class test {
 	}
 
 	@Test
-	public void test2_colorsort() {
+	public void test02_colorsort() {
 		Rack rackv1 = new Rack();
 		Tile t1 = new Tile(1, Color.Blue);
 		Tile t2 = new Tile(4, Color.Blue);
@@ -42,7 +42,7 @@ public class test {
 	}
 
 	@Test
-	public void test3_colorsort() {
+	public void test03_colorsort() {
 		Rack rackv1 = new Rack();
 		Tile t1 = new Tile(1, Color.Blue);
 		Tile t2 = new Tile(1, Color.Red);
@@ -66,7 +66,7 @@ public class test {
 	}
 
 	@Test
-	public void test4_colorsort() {
+	public void test04_colorsort() {
 		Rack rackv1 = new Rack();
 		Tile t1 = new Tile(1, Color.Blue);
 		Tile t2 = new Tile(2, Color.Red);
@@ -90,7 +90,7 @@ public class test {
 	}
 
 	@Test
-	public void test5_colorsort() {
+	public void test05_colorsort() {
 		Rack rackv1 = new Rack();
 		Tile t1 = new Tile(1, Color.Blue);
 		Tile t2 = new Tile(2, Color.Red);
@@ -118,60 +118,112 @@ public class test {
 	}
 
 	@Test
-	public void test6_GroupValid_same1() {
+	public void test06_GroupValid_same1() {
 		Tile t1 = new Tile(1, Color.Red);
 		Tile t2 = new Tile(1, Color.Blue);
 		Tile t3 = new Tile(1, Color.Black);
-		
+
 		TileSet set = new TileSet();
 		set.addToSet(t1);
 		set.addToSet(t2);
 		set.addToSet(t3);
-		
-		assertEquals(true,set.checkIfTileSetAvailable());
+
+		assertEquals(true, set.checkIfTileSetAvailable());
 	}
-	
+
 	@Test
-	public void test7_GroupValid_same1AndsameColor() {
+	public void test07_GroupValid_same1AndsameColor() {
 		Tile t1 = new Tile(1, Color.Red);
 		Tile t2 = new Tile(1, Color.Blue);
 		Tile t3 = new Tile(1, Color.Blue);
-		
+
 		TileSet set = new TileSet();
 		set.addToSet(t1);
 		set.addToSet(t2);
 		set.addToSet(t3);
-		
-		assertEquals(false,set.checkIfTileSetAvailable());
+
+		assertEquals(false, set.checkIfTileSetAvailable());
 	}
-	
+
 	@Test
-	public void test8_CheckFirstMoveSumValid(){
+	public void test08_CheckFirstMoveSumValid() {
 		Tile t1 = new Tile(1, Color.Red);
 		Tile t2 = new Tile(1, Color.Black);
 		Tile t3 = new Tile(1, Color.Blue);
-		
-		TileSet set= new TileSet();
-		Game game=Game.getInstance();
+
+		TileSet set = new TileSet();
+		Game game = new Game();
 		set.addToSet(t1);
 		set.addToSet(t2);
 		set.addToSet(t3);
-		
-		assertEquals(false,game.checkFirstMoveSum(set));
+
+		assertEquals(false, game.checkFirstMoveSum(set));
 	}
-	
+
 	@Test
-	public void test9_CheckFirstMoveSumValid(){
+	public void test09_CheckFirstMoveSumValid() {
 		Tile t1 = new Tile(11, Color.Black);
 		Tile t2 = new Tile(12, Color.Black);
 		Tile t3 = new Tile(13, Color.Black);
-		
-		TileSet set= new TileSet();
-		Game game=Game.getInstance();
+
+		TileSet set = new TileSet();
+		Game game = new Game();
 		set.addToSet(t1);
 		set.addToSet(t2);
 		set.addToSet(t3);
-		
-		assertEquals(true,game.checkFirstMoveSum(set));
+
+		assertEquals(true, game.checkFirstMoveSum(set));
 	}
+
+	@Test
+	public void test10_Draw() {
+		Player p = new Player("Test");
+		Game game = new Game();
+		Tile first = game.getTileFromAllTiles(0);
+		Tile second = game.getTileFromAllTiles(1);
+		
+		game.addPlayer(p);
+		game.draw(p);
+		
+		assertEquals(first, p.getTileByIndex(0));
+		assertEquals(second, game.getTileFromAllTiles(0));
+	}
+
+	@Test
+	public void test11_havingTwentyFourTilesInRack() {
+		Player p = new Player("Test");
+		Game game = new Game();
+		game.addPlayer(p);
+		
+		for (int i = 0; i<24;i++)
+			game.draw(p);
+		
+		assertEquals(true, p.havingTwentyFourTilesInRack());
+	}
+	
+	@Test
+	public void test12_ExceedTwentyFourTilesInRack() {
+		Player p = new Player("Test");
+		Game game = new Game();
+		game.addPlayer(p);
+		
+		for (int i = 0; i<25;i++)
+			game.draw(p);
+		
+		assertEquals(24, p.getRackSize());
+	}
+
+	@Test
+	public void test13_distribute() {
+		Player p = new Player("Test");
+		Game game = new Game();
+		game.addPlayer(p);
+		Tile first = game.getTileFromAllTiles(0);
+		Tile second = game.getTileFromAllTiles(1);
+		game.distributeTile();
+		
+		assertEquals(first, p.getTileByIndex(0));
+		assertEquals(second, p.getTileByIndex(1));
+	}
+
 }

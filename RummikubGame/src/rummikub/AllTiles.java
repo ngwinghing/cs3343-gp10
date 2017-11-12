@@ -44,5 +44,9 @@ public class AllTiles {
 		}
 		return "";	
 	}
+
+	public Tile getTile(int i) {
+		return allTiles.get(i);
+	}
 	
 }

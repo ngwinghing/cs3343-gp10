@@ -15,6 +15,10 @@ public class Player {
 	public String getName() {
 		return name;
 	}
+
+	public Tile getTileByIndex(int i) {
+		return rack.getTile(i);
+	}
 	
 	public void changeFirstMove() {
 		firstMove = false;
@@ -25,7 +29,7 @@ public class Player {
 	}
 	
 	public void addTileToRack(Tile t) {
-		if(!rack.overTwentyFour())
+		if(!havingTwentyFourTilesInRack())
 			rack.addTile(t);
 	}
 
@@ -49,12 +53,12 @@ public class Player {
 		rack.sortByColor();
 	}
 
-	public Tile getTileByIndex(int i) {
-		return rack.getTile(i);
-	}
-
 	public void removeTileSet(TileSet set) {
 		for (Tile t: set.getSets())
 			rack.removeTile(t);
+	}
+
+	public int getRackSize() {
+		return rack.getsize();
 	}
 }

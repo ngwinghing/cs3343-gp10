@@ -7,9 +7,8 @@ public class Game {
 	private static List<Player> players;
 	private static AllTiles allTiles;
 	private static Pool pool;
-	private static Game instance = new Game();
 
-	private Game() {
+	public Game() {
 		players = new ArrayList<Player>();
 		allTiles = new AllTiles();
 		pool = new Pool();
@@ -37,28 +36,6 @@ public class Game {
 				p.addTileToRack(allTiles.popFromStack());
 			}
 		}
-	}
-
-	public void availableOptions() {
-		String options = "";
-		options += "1. Draw\n";
-		options += "2. Play a set\n";
-		options += "3. Sort by number\n";
-		options += "4. Sort by color\n";
-		System.out.println(options);
-	}
-	
-	public void availablePlayOptions() {
-		String options = "";
-		options += "1. New Set\n";
-		options += "2. Add to Set\n";
-		options += "3. Move tile to new set\n";
-		options += "4. Move to set\n";
-		options += "5. Undo\n";
-		options += "6. Sort by number\n";
-		options += "7. Sort by color\n";
-		options += "8. End Turn\n";
-		System.out.println(options);
 	}
 
 	public void draw(Player p) {
@@ -92,9 +69,9 @@ public class Game {
 		pool.addSetToPool(set);
 		System.out.println("You have added " + set + "to the pool.");
 	}
-
-	public static Game getInstance() {
-		return instance;
+	
+	public Tile getTileFromAllTiles(int i) {
+		return allTiles.getTile(i);
 	}
 
 	public void endGame() {
@@ -111,8 +88,6 @@ public class Game {
 		}
 		return sum >= 30;
 	}
-	
-	
 
 	public boolean validPool(Pool p) {
 		return p.valid();
@@ -130,4 +105,5 @@ public class Game {
 		}
 		return sum >= 30;
 	}
+
 }

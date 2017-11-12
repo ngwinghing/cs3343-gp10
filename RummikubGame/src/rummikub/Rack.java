@@ -61,4 +61,8 @@ public class Rack {
 		}
 		return false;
 	}
+
+	public int getsize() {
+		return rack.size();
+	}
 }
