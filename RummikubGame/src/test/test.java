@@ -12,12 +12,11 @@ public class test {
 		Tile t3 = new Tile(1, Color.Blue);
 
 		TileSet set = new TileSet();
-		Game game = new Game();
 		set.addToSet(t1);
 		set.addToSet(t2);
 		set.addToSet(t3);
 
-		assertEquals(false, game.checkFirstMoveSum(set));
+		assertEquals(false, set.checkFirstMoveSum());
 	}
 
 	@Test
@@ -27,14 +26,11 @@ public class test {
 		Tile t3 = new Tile(13, Color.Black);
 
 		TileSet set = new TileSet();
-		Game game = new Game();
 		set.addToSet(t1);
 		set.addToSet(t2);
 		set.addToSet(t3);
 		
-		boolean result = game.checkFirstMoveSum(set);
-
-		assertEquals(true, result);
+		assertEquals(true, set.checkFirstMoveSum());
 	}
 
 	@Test
@@ -99,9 +95,7 @@ public class test {
 		set.addToSet(t2);
 		set.addToSet(t3);
 		
-		boolean result = set.checkIfTileSetAvailable();
-
-		assertEquals(true, result);
+		assertEquals(true, set.checkIfTileSetAvailable());
 	}
 
 	@Test

@@ -96,7 +96,7 @@ public class Main {
 							
 							// check sum of tiles if it is first move
 							if (p.isFirstMove() == true){
-								if (game.checkFirstMoveSum(tmpTiles) == false){
+								if (tmpTiles.checkFirstMoveSum() == false){
 									valid = false;
 									System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
 								} else if (valid) {

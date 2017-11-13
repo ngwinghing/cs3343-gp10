@@ -85,14 +85,4 @@ public class Game {
 	public void replacePoolTileSets(List<TileSet> sets) {
 		pool.replaceTileSet(sets);
 	}
-
-	public boolean checkFirstMoveSum(TileSet tmpTiles){
-		int sum = 0;
-		List<Tile> set = tmpTiles.getSets();
-		for(Tile t: set){
-			sum += t.getValue();
-		}
-		return sum >= 30;
-	}
-
 }
