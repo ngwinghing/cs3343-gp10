@@ -166,5 +166,32 @@ public class test {
 		assertEquals(false, set.checkIfTileSetAvailable());
 	}
 	
+	@Test
+	public void test19_checkIfTileSetAvailableGroup(){
+		Tile t1 = new Tile(11, Color.Blue);
+		Tile t2 = new Tile(12, Color.Black);
+		Tile t3 = new Tile(11, Color.Red);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+
+		assertEquals(false, set.checkIfTileSetAvailable());
+	}
+	
+	@Test
+	public void test20_checkIfTileSetAvailableGroup(){
+		Tile t1 = new Tile(11, Color.Blue);
+		Tile t2 = new Tile(1, Color.Joker);
+		Tile t3 = new Tile(11, Color.Red);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+
+		assertEquals(true, set.checkIfTileSetAvailable());
+	}
 	
 }
