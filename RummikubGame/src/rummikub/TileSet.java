@@ -94,7 +94,7 @@ public class TileSet {
 				tileValue = t.getValue();
 			}
 
-			if (t.getValue() != tileValue) {
+			if (t.getValue() != tileValue || t.getColor() != Color.Joker) {
 				sameValue = false;
 				break;
 			}
