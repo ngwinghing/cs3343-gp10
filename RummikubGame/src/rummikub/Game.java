@@ -6,7 +6,7 @@ import java.util.List;
 public class Game {
 	private static List<Player> players;
 	private static AllTiles allTiles;
-	private static Pool pool;
+	private Pool pool;
 
 	public Game() {
 		players = new ArrayList<Player>();

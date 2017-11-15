@@ -52,7 +52,7 @@ public class Main {
 
 				case "2":
 					boolean endTurn = false;
-					int moved = 0;
+					boolean moved = false;
 					Pool tmpPool = (Pool) game.getPool().clone();
 					List<Tile> played = new ArrayList<Tile>();
 					System.out.println("tmpPool = " + tmpPool);
@@ -116,7 +116,7 @@ public class Main {
 								tmpPool.addSetToPool(tmpTiles);
 								// remove the tiles from the player
 								p.removeTileSet(tmpTiles);
-								moved++;
+								moved = true;
 							} else {
 								System.err.println("Please input valid set again.");
 							}
@@ -128,24 +128,30 @@ public class Main {
 								System.out.println("Which set in the pool you what to add tile(s) to?");
 								String interactSetInput = scanner.nextLine();
 								TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
-								System.out.println("You have choosed " + interactSet);
+								System.out.println("You have chosen " + interactSet);
 								System.out.println(
 										"Please select the numbers of your tiles you want to play.\n*Note: Seperate by spaces.");
 								input = scanner.nextLine();
 								numbers = input.split(" ");
+
 								tmpTiles = (TileSet) interactSet.clone();
+								System.out.println("You have chosen: ");
 								for (int i = 0; i < numbers.length; i++) {
 									Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
+									System.out.println(t);
 									tmpTiles.addToSet(t);
 									played.add(t);
+									p.removeTile(t);
 								}
+
 								if (tmpTiles.checkIfTileSetAvailable()) {
+									moved = true;
 									interactSet = tmpTiles;
 									for (Tile t : played) {
-										p.removeTile(t);
+										// p.removeTile(t);
 									}
 								} else {
-									System.err.println("Please input valid set again.");
+
 								}
 							} catch (NumberFormatException e) {
 								System.err.println("Only numbers are avaliable, please retry.");
@@ -153,21 +159,46 @@ public class Main {
 							break;
 						case "3":
 							// 3. Move tile to new set
-							System.out.println("Which set in the pool you want to add to a new set?");
+							System.out.println("Which [set] in the pool you want to move to a new set?");
 							String interactSetInput = scanner.nextLine();
 							TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
 							System.out.println("Which tile(s) in the set?");
-							String interactTilesInput = scanner.nextLine();
-							// spilt
-							// found each tile
-							// add tiles to a new set
+							input = scanner.nextLine();
+							numbers = input.split(" ");
+							tmpTiles = new TileSet();
 
-							// reset this step
-							// previous steps
-
+							for (int i = 0; i < numbers.length; i++) {
+								Tile t = interactSet.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
+								played.add(t);
+								// add tiles to a new set
+								tmpTiles.addToSet(t);
+								// remove tiles from old set
+								interactSet.removeFromSet(t);
+							}
+							tmpPool.addSetToPool(tmpTiles);
 							break;
 						case "4":
 							// 4. Move to set
+							System.out.println("Which [set] in the pool you want to move?");
+							interactSetInput = scanner.nextLine();
+							interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
+
+							System.out.println("Which tile(s) in the set?");
+							input = scanner.nextLine();
+							numbers = input.split(" ");
+
+							System.out.println("Move to which [set]?");
+							interactSetInput = scanner.nextLine();
+							TileSet MoveTointeractSet = tmpPool
+									.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
+
+							for (int i = 0; i < numbers.length; i++) {
+								Tile t = interactSet.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
+								// add tiles to a new set
+								MoveTointeractSet.addToSet(t);
+								// remove tiles from old set
+								interactSet.removeFromSet(t);
+							}
 							break;
 						case "5":
 							// 5. Reset
@@ -189,9 +220,12 @@ public class Main {
 								List<TileSet> sets = tmpPool.getListSet();
 								game.replacePoolTileSets(sets);
 							} else {
+								for (Tile t : played) {
+									p.addTileToRack(t);
+								}
 								System.err.println("Invalid pool, please input again next round.");
 							}
-							if (moved == 0) {
+							if (!moved) {
 								game.draw(p);
 								System.out
 										.println("\n ** As you have not move any tile, draw one tile for this round.");

@@ -5,28 +5,32 @@ import java.util.Collections;
 import java.util.List;
 
 public class TileSet implements Cloneable {
-	private List<Tile> sets;
+	private List<Tile> set;
 
 	public TileSet() {
-		sets = new ArrayList<>();
+		set = new ArrayList<>();
+	}
+	
+	public Tile getTileByIndex(int i) {
+		return set.get(i);
 	}
 
 	public void addToSet(Tile tile) {
-		sets.add(tile);
+		set.add(tile);
 	}
 
 	public void removeFromSet(Tile tile) {
-		sets.remove(tile);
+		set.remove(tile);
 	}
 
 	public List<Tile> getSets() {
-		return sets;
+		return set;
 	}
 
 	@Override
 	public String toString() {
 		String output = "";
-		for (Tile t : sets) {
+		for (Tile t : set) {
 			output += t + " ";
 		}
 		if (output == "") {
@@ -36,18 +40,18 @@ public class TileSet implements Cloneable {
 	}
 
 	public void sortByNumber() {
-		Collections.sort(sets);
+		Collections.sort(set);
 	}
 
 	public void sortByColor() {
-		Collections.sort(sets);
-		Collections.sort(sets, Tile.TileColorComparator);
+		Collections.sort(set);
+		Collections.sort(set, Tile.TileColorComparator);
 	}
 
 	// check each tile color sort by color->check color same?-> check difference by
 	// 1? 123
 	private boolean checkRun() {
-		if (sets.size() <3 ) {
+		if (set.size() <3 ) {
 			return false;
 		}
 		
@@ -58,7 +62,7 @@ public class TileSet implements Cloneable {
 		boolean sameColor = true;
 		boolean consecutive = true;
 
-		for (Tile t : sets) {
+		for (Tile t : set) {
 			if (tileValue == 0) {
 				tileValue = t.getValue();
 			}
@@ -88,7 +92,7 @@ public class TileSet implements Cloneable {
 		boolean sameValue = true;
 		boolean differentColor = true;
 
-		for (Tile t : sets) {
+		for (Tile t : set) {
 			if (tileValue == 0) {
 				tileValue = t.getValue();
 			}
