@@ -1,5 +1,6 @@
 package rummikub;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -53,11 +54,14 @@ public class Main {
 					boolean endTurn = false;
 					int moved = 0;
 					Pool tmpPool = (Pool) game.getPool().clone();
-					System.out.println("tmpPool = "+tmpPool);
+					List<Tile> played = new ArrayList<Tile>();
+					System.out.println("tmpPool = " + tmpPool);
 					do {
 						System.out.println("\nCurrentPool: ");
 						game.printPool();
-						
+
+						printRackLine(p);
+
 						System.out.println("=====================================");
 						System.out.println("2: Please choose your play options: ");
 						System.out.println("=====================================");
@@ -87,27 +91,29 @@ public class Main {
 								try {
 									Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
 									tmpTiles.addToSet(t);
+									played.add(t);
 								} catch (NumberFormatException e) {
 									System.err.println("Only numbers are avaliable, please retry.");
 								}
 							}
 							// validate user inputed tiles
 							boolean valid = tmpTiles.checkIfTileSetAvailable();
-							
+
 							// check sum of tiles if it is first move
-							if (p.isFirstMove() == true){
-								if (game.checkFirstMoveSum(tmpTiles) == false){
+							if (p.isFirstMove() == true) {
+								if (game.checkFirstMoveSum(tmpTiles) == false) {
 									valid = false;
-									System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
+									System.err.println(
+											"The sum of sll tiles in first move should be larger than 30, please retry.");
 								} else {
 									// change the first move value to false if the set is valid
 									p.changeFirstMove();
 								}
 							}
-							
+
 							// if validated, add to pool
 							if (valid) {
-								game.addSetToPool(tmpTiles);
+								tmpPool.addSetToPool(tmpTiles);
 								// remove the tiles from the player
 								p.removeTileSet(tmpTiles);
 								moved++;
@@ -117,22 +123,29 @@ public class Main {
 							break;
 
 						case "2":
-							// 2. Add to Set
+							// 2. Add tile(s) to a Set
 							try {
 								System.out.println("Which set in the pool you what to add tile(s) to?");
 								String interactSetInput = scanner.nextLine();
 								TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
+								System.out.println("You have choosed " + interactSet);
 								System.out.println(
 										"Please select the numbers of your tiles you want to play.\n*Note: Seperate by spaces.");
 								input = scanner.nextLine();
 								numbers = input.split(" ");
 								tmpTiles = (TileSet) interactSet.clone();
 								for (int i = 0; i < numbers.length; i++) {
-										Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
-										tmpTiles.addToSet(t);
-										if (tmpTiles.checkIfTileSetAvailable()) {
-											
-										}
+									Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
+									tmpTiles.addToSet(t);
+									played.add(t);
+								}
+								if (tmpTiles.checkIfTileSetAvailable()) {
+									interactSet = tmpTiles;
+									for (Tile t : played) {
+										p.removeTile(t);
+									}
+								} else {
+									System.err.println("Please input valid set again.");
 								}
 							} catch (NumberFormatException e) {
 								System.err.println("Only numbers are avaliable, please retry.");
@@ -145,30 +158,30 @@ public class Main {
 							TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
 							System.out.println("Which tile(s) in the set?");
 							String interactTilesInput = scanner.nextLine();
-							//spilt
-							//found each tile
-							//add tiles to a new set
-							
+							// spilt
+							// found each tile
+							// add tiles to a new set
+
 							// reset this step
 							// previous steps
-							
+
 							break;
 						case "4":
 							// 4. Move to set
 							break;
 						case "5":
 							// 5. Reset
-							break;	
+							break;
 						case "6":
 							// 6. Sort by number
 							p.sortByNumber();
 							printRackLine(p);
-							break;	
+							break;
 						case "7":
 							// 7. Sort by color
 							p.sortByColor();
 							printRackLine(p);
-							break;	
+							break;
 						case "8":
 							// 8. End Turn
 							endTurn = true;
@@ -180,7 +193,8 @@ public class Main {
 							}
 							if (moved == 0) {
 								game.draw(p);
-								System.out.println("\n ** As you have not move any tile, draw one tile for this round.");
+								System.out
+										.println("\n ** As you have not move any tile, draw one tile for this round.");
 							}
 							break;
 						default:

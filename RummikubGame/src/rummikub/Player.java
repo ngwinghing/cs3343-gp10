@@ -29,8 +29,7 @@ public class Player {
 	}
 	
 	public void addTileToRack(Tile t) {
-		if(!havingTwentyFourTilesInRack())
-			rack.addTile(t);
+		rack.addTile(t);
 	}
 
 	public boolean notHavingTilesInRack() {
@@ -60,5 +59,9 @@ public class Player {
 
 	public int getRackSize() {
 		return rack.getsize();
+	}
+
+	public void removeTile(Tile t) {
+		rack.removeTile(t);
 	}
 }

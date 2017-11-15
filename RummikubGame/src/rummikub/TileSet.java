@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TileSet {
+public class TileSet implements Cloneable {
 	private List<Tile> sets;
 
 	public TileSet() {
@@ -35,11 +35,6 @@ public class TileSet {
 		return output;
 	}
 
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return (TileSet) super.clone();
-	}
-
 	public void sortByNumber() {
 		Collections.sort(sets);
 	}
@@ -52,6 +47,10 @@ public class TileSet {
 	// check each tile color sort by color->check color same?-> check difference by
 	// 1? 123
 	private boolean checkRun() {
+		if (sets.size() <3 ) {
+			return false;
+		}
+		
 		sortByColor();
 
 		int tileValue = 0;
@@ -79,7 +78,7 @@ public class TileSet {
 			}
 
 		}
-		return sameColor && consecutive && (sets.size() > 2);
+		return sameColor && consecutive;
 	}
 
 	private boolean checkGroup() {
@@ -114,5 +113,10 @@ public class TileSet {
 		boolean run = checkRun();
 		boolean group = checkGroup();
 		return (run || group);
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return (TileSet) super.clone();
 	}
 }

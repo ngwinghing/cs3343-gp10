@@ -53,10 +53,10 @@ public class Game {
 				System.out.println("Used all tiles from rack, win!");
 				return false;
 			}
-			else if (p.havingTwentyFourTilesInRack()){
-				System.out.println("Exceed 24 cards in rack, lose!");
-				return false;
-			}
+//			else if (p.havingTwentyFourTilesInRack()){
+//				System.out.println("Exceed 24 cards in rack, lose!");
+//				return false;
+//			}
 		}
 		return true;
 	}
