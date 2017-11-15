@@ -66,7 +66,7 @@ public class Main {
 						playOptions += "2. Add to Set\n";
 						playOptions += "3. Move tile to new set\n";
 						playOptions += "4. Move to set\n";
-						playOptions += "5. Undo\n";
+						playOptions += "5. Reset\n";
 						playOptions += "6. Sort by number\n";
 						playOptions += "7. Sort by color\n";
 						playOptions += "8. End Turn\n";
@@ -99,7 +99,7 @@ public class Main {
 								if (game.checkFirstMoveSum(tmpTiles) == false){
 									valid = false;
 									System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
-								} else if (valid) {
+								} else {
 									// change the first move value to false if the set is valid
 									p.changeFirstMove();
 								}
@@ -119,10 +119,10 @@ public class Main {
 						case "2":
 							// 2. Add to Set
 							try {
-								System.out.println("Which set in the pool you what to add to?");
+								System.out.println("Which set in the pool you what to add tile(s) to?");
 								String interactSetInput = scanner.nextLine();
 								TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
-								System.err.println(
+								System.out.println(
 										"Please select the numbers of your tiles you want to play.\n*Note: Seperate by spaces.");
 								input = scanner.nextLine();
 								numbers = input.split(" ");
@@ -140,6 +140,18 @@ public class Main {
 							break;
 						case "3":
 							// 3. Move tile to new set
+							System.out.println("Which set in the pool you want to add to a new set?");
+							String interactSetInput = scanner.nextLine();
+							TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
+							System.out.println("Which tile(s) in the set?");
+							String interactTilesInput = scanner.nextLine();
+							//spilt
+							//found each tile
+							//add tiles to a new set
+							
+							// reset this step
+							// previous steps
+							
 							break;
 						case "4":
 							// 4. Move to set
