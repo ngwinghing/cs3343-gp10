@@ -32,7 +32,7 @@ public class test {
 		set.addToSet(t2);
 		set.addToSet(t3);
 		
-		boolean result = game.checkFirstMoveSum(set);
+		boolean result = game.checkFirstMoveSu?m(set);
 
 		assertEquals(true, result);
 	}

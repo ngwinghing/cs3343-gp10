@@ -56,6 +56,10 @@ public class Main {
 					Pool backUpPool = (Pool) game.getPool().clone();
 					List<Tile> played = new ArrayList<Tile>();
 					System.out.println("backup = " + backUpPool);
+					
+					//check firstMove sum
+					int setSum = 0;
+					
 					do {
 						System.out.println("\nCurrentPool: ");
 						game.printPool();
@@ -80,6 +84,9 @@ public class Main {
 						System.out.println("-------------------------------------");
 						String playOption = scanner.nextLine();
 
+						
+						
+						
 						switch (playOption) {
 
 						case "1":
@@ -104,15 +111,8 @@ public class Main {
 							boolean valid = tmpTiles.checkIfTileSetAvailable();
 
 							// check sum of tiles if it is first move
-							if (p.isFirstMove() == true) {
-								if (game.checkFirstMoveSum(tmpTiles) == false) {
-									valid = false;
-									System.err.println(
-											"The sum of sll tiles in first move should be larger than 30, please retry.");
-								} else {
-									// change the first move value to false if the set is valid
-									p.changeFirstMove();
-								}
+							if (p.isFirstMove()) {
+								setSum += game.calSetValueSum(tmpTiles);
 							}
 
 							// if validated, add to pool
@@ -214,19 +214,30 @@ public class Main {
 						case "8":
 							// 8. End Turn
 							endTurn = true;
-							if (!game.validPool()) {
+							boolean firstMoveErr = true;
+							System.err.println(setSum);
+							if (p.isFirstMove()){
+								if (setSum < 30){
+									System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
+								}else{
+									p.changeFirstMove();
+									firstMoveErr = false;
+								}
+							}
+							if (!game.validPool() || firstMoveErr) {
 								List<TileSet> sets = backUpPool.getListSet();
 								game.replacePoolTileSets(sets);
 								for (Tile t : played) {
 									p.addTileToRack(t);
 								}
 								System.err.println("Invalid pool, please input again next round.");
+								
 							}
 							if (!moved) {
 								game.draw(p);
-								System.out
-										.println("\n ** As you have not move any tile, draw one tile for this round.");
+								System.out.println("\n ** As you have not move any tile, draw one tile for this round.");
 							}
+							
 							break;
 						default:
 							System.err.println("Please input an avaliable option number.");
