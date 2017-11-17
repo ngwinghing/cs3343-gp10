@@ -53,12 +53,14 @@ public class Main {
 				case "2":
 					boolean endTurn = false;
 					boolean moved = false;
-					Pool tmpPool = (Pool) game.getPool().clone();
+					Pool backUpPool = (Pool) game.getPool().clone();
 					List<Tile> played = new ArrayList<Tile>();
-					System.out.println("tmpPool = " + tmpPool);
+					System.out.println("backup = " + backUpPool);
 					do {
 						System.out.println("\nCurrentPool: ");
 						game.printPool();
+						
+						System.out.println("backup = " + backUpPool);
 
 						printRackLine(p);
 
@@ -83,7 +85,7 @@ public class Main {
 						case "1":
 							// 1. New Set
 							System.out.println(
-									"Please select the numbers of your tiles you want to play.\n*Note: Seperate by spaces.");
+									"Which [tile(s)] in the rack? *Note: Seperate by spaces.");
 							String input = scanner.nextLine();
 							String[] numbers = input.split(" ");
 							TileSet tmpTiles = new TileSet();
@@ -94,6 +96,8 @@ public class Main {
 									played.add(t);
 								} catch (NumberFormatException e) {
 									System.err.println("Only numbers are avaliable, please retry.");
+								} catch (IndexOutOfBoundsException e) {
+									System.err.println("Please retry with available numbers.");
 								}
 							}
 							// validate user inputed tiles
@@ -113,7 +117,7 @@ public class Main {
 
 							// if validated, add to pool
 							if (valid) {
-								tmpPool.addSetToPool(tmpTiles);
+								game.addSetToPool(tmpTiles);
 								// remove the tiles from the player
 								p.removeTileSet(tmpTiles);
 								moved = true;
@@ -125,48 +129,42 @@ public class Main {
 						case "2":
 							// 2. Add tile(s) to a Set
 							try {
-								System.out.println("Which set in the pool you what to add tile(s) to?");
+								System.out.println("Which [set] in the pool you what to add tile(s) to?");
 								String interactSetInput = scanner.nextLine();
-								TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
+								TileSet interactSet = game.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
 								System.out.println("You have chosen " + interactSet);
 								System.out.println(
-										"Please select the numbers of your tiles you want to play.\n*Note: Seperate by spaces.");
+										"Which [tile(s)] in the rack?\n *Note: Seperate by spaces.");
 								input = scanner.nextLine();
 								numbers = input.split(" ");
 
-								tmpTiles = (TileSet) interactSet.clone();
 								System.out.println("You have chosen: ");
 								for (int i = 0; i < numbers.length; i++) {
 									Tile t = p.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
 									System.out.println(t);
-									tmpTiles.addToSet(t);
+									interactSet.addToSet(t);
 									played.add(t);
 									p.removeTile(t);
 								}
 
-								if (tmpTiles.checkIfTileSetAvailable()) {
-									moved = true;
-									interactSet = tmpTiles;
-									for (Tile t : played) {
-										// p.removeTile(t);
-									}
-								} else {
-
-								}
 							} catch (NumberFormatException e) {
 								System.err.println("Only numbers are avaliable, please retry.");
+							} catch (IndexOutOfBoundsException e) {
+								System.err.println("Please retry with available numbers.");
 							}
 							break;
 						case "3":
 							// 3. Move tile to new set
 							System.out.println("Which [set] in the pool you want to move to a new set?");
 							String interactSetInput = scanner.nextLine();
-							TileSet interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
-							System.out.println("Which tile(s) in the set?");
+							TileSet interactSet = game.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
+							System.out.println("You have chosen " + interactSet);
+							System.out.println("Which [tile(s)] in the set?");
 							input = scanner.nextLine();
 							numbers = input.split(" ");
 							tmpTiles = new TileSet();
-
+							
+							System.out.println("You have chosen: ");
 							for (int i = 0; i < numbers.length; i++) {
 								Tile t = interactSet.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
 								played.add(t);
@@ -175,13 +173,13 @@ public class Main {
 								// remove tiles from old set
 								interactSet.removeFromSet(t);
 							}
-							tmpPool.addSetToPool(tmpTiles);
+							game.addSetToPool(tmpTiles);
 							break;
 						case "4":
 							// 4. Move to set
 							System.out.println("Which [set] in the pool you want to move?");
 							interactSetInput = scanner.nextLine();
-							interactSet = tmpPool.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
+							interactSet = game.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
 
 							System.out.println("Which tile(s) in the set?");
 							input = scanner.nextLine();
@@ -189,7 +187,7 @@ public class Main {
 
 							System.out.println("Move to which [set]?");
 							interactSetInput = scanner.nextLine();
-							TileSet MoveTointeractSet = tmpPool
+							TileSet MoveTointeractSet = game
 									.getTileSetByIndex(Integer.parseInt(interactSetInput) - 1);
 
 							for (int i = 0; i < numbers.length; i++) {
@@ -216,10 +214,9 @@ public class Main {
 						case "8":
 							// 8. End Turn
 							endTurn = true;
-							if (game.validPool(tmpPool)) {
-								List<TileSet> sets = tmpPool.getListSet();
+							if (!game.validPool()) {
+								List<TileSet> sets = backUpPool.getListSet();
 								game.replacePoolTileSets(sets);
-							} else {
 								for (Tile t : played) {
 									p.addTileToRack(t);
 								}

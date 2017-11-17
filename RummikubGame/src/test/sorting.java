@@ -96,7 +96,7 @@ public class sorting {
 		Tile t2 = new Tile(2, Color.Red);
 		Tile t3 = new Tile(3, Color.Red);
 		Tile t4 = new Tile(4, Color.Yellow);
-		Tile t5 = new Tile(1, Color.Joker);
+		Tile t5 = new Tile(Color.Joker);
 		rackv1.addTile(t1);
 		rackv1.addTile(t2);
 		rackv1.addTile(t3);

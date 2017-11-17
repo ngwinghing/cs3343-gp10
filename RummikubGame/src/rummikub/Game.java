@@ -53,10 +53,6 @@ public class Game {
 				System.out.println("Used all tiles from rack, win!");
 				return false;
 			}
-//			else if (p.havingTwentyFourTilesInRack()){
-//				System.out.println("Exceed 24 cards in rack, lose!");
-//				return false;
-//			}
 		}
 		return true;
 	}
@@ -78,14 +74,16 @@ public class Game {
 		pool = new Pool();
 	}
 	
-	public boolean validPool(Pool p) {
-		return p.valid();
+	public boolean validPool() {
+		return pool.valid();
 	}
 
 	public void replacePoolTileSets(List<TileSet> sets) {
 		pool.replaceTileSet(sets);
 	}
-
+	public TileSet getTileSetByIndex(int i) {
+		return pool.getTileSetByIndex(i);
+    	}
 	public boolean checkFirstMoveSum(TileSet tmpTiles){
 		int sum = 0;
 		List<Tile> set = tmpTiles.getSets();
@@ -93,6 +91,10 @@ public class Game {
 			sum += t.getValue();
 		}
 		return sum >= 30;
+	}
+
+	public static Game getInstance() {
+		return null;
 	}
 
 }

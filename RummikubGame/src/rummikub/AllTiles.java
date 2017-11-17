@@ -22,7 +22,7 @@ public class AllTiles {
 
 		// 2 Jokers
 		for (int i = 0; i < 2; i++) {
-			allTiles.add(new Tile(i + 1, Color.Joker));
+			allTiles.add(new Tile(Color.Joker));
 		}
 		
 		Collections.shuffle(allTiles);

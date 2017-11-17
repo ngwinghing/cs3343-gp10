@@ -6,6 +6,11 @@ public class Tile implements Comparable<Tile> {
 
 	private int value;
 	private Color color;
+	
+	public Tile(Color color) {
+		this.value = 100;
+		this.color = color;
+	}
 
 	public Tile(int value, Color color) {
 		this.value = value;
@@ -21,7 +26,11 @@ public class Tile implements Comparable<Tile> {
 	}
 
 	public @Override String toString() {
-		return "[ " + color + " " + value + " ] ";
+		if (this.color.equals(Color.Joker)) {
+			return "[ " + color + " ] ";
+		} else {
+			return "[ " + color + " " + value + " ] ";
+		}
 	}
 
 	@Override

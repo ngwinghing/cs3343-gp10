@@ -24,6 +24,35 @@ public class Pool implements Cloneable {
 		sets.get(setIndex).removeFromSet(tile);
 	}
 
+	public boolean valid() {
+		for (TileSet s: sets) {
+			if (!s.checkIfTileSetAvailable()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public List<TileSet> getListSet() {
+		return sets;
+	}
+
+	public void replaceTileSet(List<TileSet> sets) {
+		this.sets = sets;
+	}
+
+	public TileSet getTileSetByIndex(int i) {
+		return sets.get(i);
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		Pool pool = new Pool();
+		for(TileSet set : sets)
+			pool.addSetToPool((TileSet) set.clone());
+		return pool;
+	}
+	
 	@Override
 	public String toString() {
 		String output = "";
@@ -37,32 +66,5 @@ public class Pool implements Cloneable {
 			return "No Tile.";
 		}
 		return output;
-	}
-
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return (Pool) super.clone();
-	}
-
-	public boolean valid() {
-		boolean valid = true;
-		for (TileSet s: sets) {
-			if (!s.checkIfTileSetAvailable()) {
-				valid = false;
-			}
-		}
-		return valid;
-	}
-
-	public List<TileSet> getListSet() {
-		return sets;
-	}
-
-	public void replaceTileSet(List<TileSet> sets) {
-		this.sets = sets;
-	}
-
-	public TileSet getTileSetByIndex(int i) {
-		return sets.get(i);
 	}
 }

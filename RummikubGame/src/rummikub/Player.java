@@ -37,12 +37,6 @@ public class Player {
 			return true;
 		return false;
 	}
-	
-	public boolean havingTwentyFourTilesInRack() {
-		if (rack.overTwentyFour())
-			return true;
-		return false;
-	}
 
 	public void sortByNumber() {
 		rack.sortByNumber();

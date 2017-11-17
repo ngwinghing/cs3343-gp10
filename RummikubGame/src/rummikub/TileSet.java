@@ -10,7 +10,7 @@ public class TileSet implements Cloneable {
 	public TileSet() {
 		set = new ArrayList<>();
 	}
-	
+
 	public Tile getTileByIndex(int i) {
 		return set.get(i);
 	}
@@ -51,10 +51,10 @@ public class TileSet implements Cloneable {
 	// check each tile color sort by color->check color same?-> check difference by
 	// 1? 123
 	private boolean checkRun() {
-		if (set.size() <3 ) {
+		if (set.size() < 3) {
 			return false;
 		}
-		
+
 		sortByColor();
 
 		int tileValue = 0;
@@ -87,30 +87,31 @@ public class TileSet implements Cloneable {
 
 	private boolean checkGroup() {
 		sortByNumber();
+		
 		int tileValue = 0;
 		List<Color> colors = new ArrayList<>();
-		boolean sameValue = true;
-		boolean differentColor = true;
 
 		for (Tile t : set) {
 			if (tileValue == 0) {
 				tileValue = t.getValue();
 			}
 
-			if (t.getValue() != tileValue && t.getColor() != Color.Joker) {
-				sameValue = false;
-				break;
+			if (t.getValue() != tileValue) {
+				if (t.getColor() != Color.Joker) {
+					return false;
+				}
 			}
 
-			if (!colors.contains(t.getColor()))
+			if (!colors.contains(t.getColor())) {
 				colors.add(t.getColor());
-
+			}
 		}
 
-		if (colors.size() < 3)
-			differentColor = false;
+		if (colors.size() < 3) {
+			return false;
+		}
 
-		return sameValue && differentColor;
+		return true;
 	}
 
 	public boolean checkIfTileSetAvailable() {
@@ -118,9 +119,12 @@ public class TileSet implements Cloneable {
 		boolean group = checkGroup();
 		return (run || group);
 	}
-	
+
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-		return (TileSet) super.clone();
+		TileSet copy = new TileSet();
+		for (Tile t : set)
+			copy.addToSet(t);
+		return copy;
 	}
 }
