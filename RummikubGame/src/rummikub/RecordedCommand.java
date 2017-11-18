@@ -29,7 +29,7 @@ public abstract class RecordedCommand implements Command{
 	}
 	
 	@Override
-	public void execute(String[] cmdParts) {
+	public void execute() {
 	}
 	
 }
