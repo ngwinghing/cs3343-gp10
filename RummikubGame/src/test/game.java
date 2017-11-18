@@ -16,4 +16,18 @@ public class game {
 
 		assertEquals(true, game.notEnd());
 	}
+	
+	@Test
+	public void test22_calSetValueSum(){
+		Tile t1 = new Tile(11, Color.Blue);
+		Tile t2 = new Tile(11, Color.Red);
+		Tile t3 = new Tile(11, Color.Black);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+
+		assertEquals(33, Game.getInstance().calSetValueSum(set));
+	}
 }
