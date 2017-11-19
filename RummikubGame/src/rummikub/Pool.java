@@ -5,7 +5,7 @@ import java.util.List;
 
 //a class that contains the tiles that the player played
 
-public class Pool implements Cloneable {
+public class Pool {
 	private List<TileSet> sets;
 
 	public Pool() {
@@ -52,7 +52,7 @@ public class Pool implements Cloneable {
 	}
 
 	@Override
-	public Object clone() throws CloneNotSupportedException {
+	public Pool clone() throws CloneNotSupportedException {
 		Pool pool = new Pool();
 		for (TileSet set : sets)
 			pool.addSetToPool((TileSet) set.clone());

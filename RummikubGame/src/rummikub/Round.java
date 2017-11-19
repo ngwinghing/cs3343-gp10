@@ -10,18 +10,24 @@ public class Round extends GameUI {
 	boolean moved = false;
 
 	Pool backUpPool;
-	ArrayList<Tile> played;
+	List<Tile> played;
 
-	public Round(Game game) throws CloneNotSupportedException {
+	public Round(Game game){
 		super(game);
-		played = new ArrayList<Tile>();
-		backUpPool = (Pool) game.getPool().clone();
 	}
 
 	@Override
 	public void output() {
+		
 		System.out.println("\nPool: ");
 		game.printPool();
+		played = new ArrayList<>();
+		try {
+			backUpPool = game.getPool().clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		roundPlayer = game.getRoundPlayer();
 		
@@ -93,6 +99,7 @@ public class Round extends GameUI {
 				Tile t = roundPlayer.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
 				System.out.println(t);
 				set.add(t);
+				played.add(t);
 			}
 			
 			new CmdAddToSet(game, roundPlayer, sourceSet, set).execute();
@@ -174,8 +181,6 @@ public class Round extends GameUI {
 		
 		System.out.println("\nCurrentPool: ");
 		game.printPool();
-
-		System.out.println("backup = " + backUpPool);
 
 		printRackLine(roundPlayer);
 	}

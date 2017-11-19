@@ -86,13 +86,8 @@ public class Game {
 	public void start() {
 		distributeTile();
 		do {
-			round++;
-			try {
-				new Round(this);
-			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("\n################ ROUND ################");	
+			new Round(this);
 		} while (notEnd());
 		
 		endGame();
