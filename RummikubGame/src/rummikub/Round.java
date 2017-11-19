@@ -70,15 +70,12 @@ public class Round extends GameUI {
 
 			TileSet tmpTiles = new TileSet();
 
-			System.out.println("You have chosen: ");
 			for (int i = 0; i < numbers.length; i++) {
 				Tile t = roundPlayer.getTileByIndex(Integer.parseInt(numbers[i]) - 1);
-				System.out.println(t);
 				tmpTiles.addToSet(t);
 				played.add(t);
 			}
-
-			System.out.println("tmpTiles: " + tmpTiles);
+			
 			new CmdNewSet(game, roundPlayer, tmpTiles).execute();
 			break;
 		case "3":
