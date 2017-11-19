@@ -48,9 +48,7 @@ public class TileSet implements Cloneable {
 		Collections.sort(set, Tile.TileColorComparator);
 	}
 
-	// check each tile color sort by color->check color same?-> check difference by
-	// 1? 123
-	private boolean checkRun() {
+	public boolean checkRun() {
 		if (set.size() < 3) {
 			return false;
 		}
@@ -85,9 +83,10 @@ public class TileSet implements Cloneable {
 		return sameColor && consecutive;
 	}
 
-	private boolean checkGroup() {
+	public boolean checkGroup() {
 		sortByNumber();
-		
+		//count joker
+		//color -2
 		int tileValue = 0;
 		List<Color> colors = new ArrayList<>();
 
