@@ -49,51 +49,54 @@ public class TileSet implements Cloneable {
 	}
 
 	public boolean checkRun() {
-
 		if (set.size() < 3) {
 			return false;
 		}
 
 		sortByColor();
 
-		int countJoker = 0;
-		int noOfTileOfSameColor = 1;
 		int tileValue = 0;
 		Color tileColor = null;
-		int jokerTileValue = 0;
 		boolean sameColor = true;
 		boolean consecutive = true;
 
+		int countJoker = 0;
+
 		for (Tile t : set) {
-			if (tileValue == 0) {
-				tileValue = t.getValue();
-			}
-
-			if (tileColor == null) {
-				tileColor = t.getColor();
-			}
-
-			if (t.getValue() != tileValue++ && tileColor != Color.Joker) {
-				consecutive = false;
-				break;
-			}
-
-			if (tileColor != t.getColor() && tileColor != Color.Joker) {
-				sameColor = false;
-				break;
-			}
-
-			if (t.getColor() == Color.Joker) {
+			if (t.getColor().equals(Color.Joker))
 				countJoker++;
-				jokerTileValue = tileValue + 1;
-			} else {
-				noOfTileOfSameColor++;
-				tileValue = t.getValue();
-			}
-
 		}
 
-		return sameColor && consecutive && (set.size() == (countJoker + noOfTileOfSameColor));
+		for (int i = 0; i < set.size(); i++) {
+			Tile t = set.get(i);
+			if (tileValue == 0) {
+				tileValue = t.getValue();
+				tileColor = t.getColor();
+				continue;
+			}
+
+			if (!t.getColor().equals(tileColor)) {
+				if (t.getColor().equals(Color.Joker)) {
+					continue;
+				} else {
+					sameColor = false;
+					break;
+				}
+			}
+
+			tileValue++;
+			if (t.getValue() != tileValue) {
+				if (countJoker == 0) {
+					consecutive = false;
+					break;
+				} else {
+					countJoker--;
+					i--;
+				}
+			}
+		}
+
+		return (sameColor && consecutive);
 	}
 
 	public boolean checkGroup() {

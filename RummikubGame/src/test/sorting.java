@@ -116,4 +116,32 @@ public class sorting {
 		assertEquals(resv4, t4);
 		assertEquals(resv5, t5);
 	}
+	
+	@Test
+	public void test_colorsort_06() {
+		Rack rackv1 = new Rack();
+		Tile t1 = new Tile(Color.Joker);
+		Tile t2 = new Tile(2, Color.Red);
+		Tile t3 = new Tile(1, Color.Blue);
+		Tile t4 = new Tile(4, Color.Yellow);
+		Tile t5 = new Tile(3, Color.Red);
+		rackv1.addTile(t1);
+		rackv1.addTile(t2);
+		rackv1.addTile(t3);
+		rackv1.addTile(t4);
+		rackv1.addTile(t5);
+
+		rackv1.sortByColor();
+		Tile resv1 = rackv1.getTile(0);
+		Tile resv2 = rackv1.getTile(1);
+		Tile resv3 = rackv1.getTile(2);
+		Tile resv4 = rackv1.getTile(3);
+		Tile resv5 = rackv1.getTile(4);
+
+		assertEquals(resv1, t3);
+		assertEquals(resv2, t2);
+		assertEquals(resv3, t5);
+		assertEquals(resv4, t4);
+		assertEquals(resv5, t1);
+	}
 }

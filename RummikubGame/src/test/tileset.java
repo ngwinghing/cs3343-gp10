@@ -291,4 +291,44 @@ public class tileset {
 		assertEquals(true, set.checkRun());
 	}
 	
+	@Test
+	public void test_checkIfTileSetAvailableRun_21(){
+		Tile t1 = new Tile(8, Color.Red);
+		Tile t2 = new Tile(Color.Joker);
+		Tile t3 = new Tile(10, Color.Red);
+		Tile t4 = new Tile(11, Color.Red);
+		Tile t5 = new Tile(12, Color.Red);
+		Tile t6 = new Tile(13, Color.Red);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+		set.addToSet(t4);
+		set.addToSet(t5);
+		set.addToSet(t6);
+
+		assertEquals(true, set.checkRun());
+	}
+	
+	@Test
+	public void test_checkIfTileSetAvailableRun_22(){
+		Tile t1 = new Tile(8, Color.Red);
+		Tile t2 = new Tile(Color.Joker);
+		Tile t3 = new Tile(10, Color.Red);
+		Tile t4 = new Tile(11, Color.Red);
+		Tile t5 = new Tile(13, Color.Red);
+		Tile t6 = new Tile(13, Color.Red);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+		set.addToSet(t4);
+		set.addToSet(t5);
+		set.addToSet(t6);
+
+		assertEquals(false, set.checkRun());
+	}
+	
 }
