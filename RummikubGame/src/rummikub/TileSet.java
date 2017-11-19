@@ -49,14 +49,18 @@ public class TileSet implements Cloneable {
 	}
 
 	public boolean checkRun() {
+
 		if (set.size() < 3) {
 			return false;
 		}
 
 		sortByColor();
 
+		int countJoker = 0;
+		int noOfTileOfSameColor = 1;
 		int tileValue = 0;
 		Color tileColor = null;
+		int jokerTileValue = 0;
 		boolean sameColor = true;
 		boolean consecutive = true;
 
@@ -69,18 +73,27 @@ public class TileSet implements Cloneable {
 				tileColor = t.getColor();
 			}
 
-			if (t.getValue() != tileValue++) {
+			if (t.getValue() != tileValue++ && tileColor != Color.Joker) {
 				consecutive = false;
 				break;
 			}
 
-			if (tileColor != t.getColor()) {
+			if (tileColor != t.getColor() && tileColor != Color.Joker) {
 				sameColor = false;
 				break;
 			}
 
+			if (t.getColor() == Color.Joker) {
+				countJoker++;
+				jokerTileValue = tileValue + 1;
+			} else {
+				noOfTileOfSameColor++;
+				tileValue = t.getValue();
+			}
+
 		}
-		return sameColor && consecutive;
+
+		return sameColor && consecutive && (set.size() == (countJoker + noOfTileOfSameColor));
 	}
 
 	public boolean checkGroup() {

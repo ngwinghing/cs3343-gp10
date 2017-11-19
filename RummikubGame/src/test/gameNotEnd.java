@@ -16,4 +16,18 @@ public class gameNotEnd {
 
 		assertEquals(true, game.notEnd());
 	}
+
+	@Test
+	public void test_gameNotEnd_02() {
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		game.distributeTile();
+		Rack r = p1.getRack();
+		for (int i = 0; i < r.getsize(); i++) {
+			p1.removeTile(r.getTile(i));
+		}
+
+		assertEquals(true, game.notEnd());
+	}
 }
