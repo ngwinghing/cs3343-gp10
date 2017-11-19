@@ -115,13 +115,4 @@ public class Game {
 	public TileSet getTileSetByIndex(int i) {
 		return pool.getTileSetByIndex(i);
 	}
-
-	public boolean checkFirstMoveSum(TileSet tmpTiles) {
-		int sum = 0;
-		List<Tile> set = tmpTiles.getSets();
-		for (Tile t : set) {
-			sum += t.getValue();
-		}
-		return sum >= 30;
-	}
 }

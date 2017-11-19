@@ -5,37 +5,37 @@ import rummikub.*;
 import static org.junit.Assert.*;
 
 public class test {
-	@Test
-	public void test08_checkFirstMoveSumValid() {
-		Tile t1 = new Tile(1, Color.Red);
-		Tile t2 = new Tile(1, Color.Black);
-		Tile t3 = new Tile(1, Color.Blue);
-
-		TileSet set = new TileSet();
-		Game game = new Game();
-		set.addToSet(t1);
-		set.addToSet(t2);
-		set.addToSet(t3);
-
-		assertEquals(false, game.checkFirstMoveSum(set));
-	}
-
-	@Test
-	public void test09_checkFirstMoveSumValid() {
-		Tile t1 = new Tile(11, Color.Black);
-		Tile t2 = new Tile(12, Color.Black);
-		Tile t3 = new Tile(13, Color.Black);
-
-		TileSet set = new TileSet();
-		Game game = new Game();
-		set.addToSet(t1);
-		set.addToSet(t2);
-		set.addToSet(t3);
-		
-		boolean result = game.checkFirstMoveSum(set);
-
-		assertEquals(true, result);
-	}
+//	@Test
+//	public void test08_checkFirstMoveSumValid() {
+//		Tile t1 = new Tile(1, Color.Red);
+//		Tile t2 = new Tile(1, Color.Black);
+//		Tile t3 = new Tile(1, Color.Blue);
+//
+//		TileSet set = new TileSet();
+//		Game game = new Game();
+//		set.addToSet(t1);
+//		set.addToSet(t2);
+//		set.addToSet(t3);
+//
+//		assertEquals(false, game.checkFirstMoveSum(set));
+//	}
+//
+//	@Test
+//	public void test09_checkFirstMoveSumValid() {
+//		Tile t1 = new Tile(11, Color.Black);
+//		Tile t2 = new Tile(12, Color.Black);
+//		Tile t3 = new Tile(13, Color.Black);
+//
+//		TileSet set = new TileSet();
+//		Game game = new Game();
+//		set.addToSet(t1);
+//		set.addToSet(t2);
+//		set.addToSet(t3);
+//		
+//		boolean result = game.checkFirstMoveSum(set);
+//
+//		assertEquals(true, result);
+//	}
 
 	@Test
 	public void test10_draw() {
@@ -64,4 +64,18 @@ public class test {
 		assertEquals(second, p.getTileByIndex(1));
 	}
 	
+//	@Test
+//	public void test22_calSetValueSum(){
+//		Tile t1 = new Tile(11, Color.Blue);
+//		Tile t2 = new Tile(11, Color.Red);
+//		Tile t3 = new Tile(11, Color.Black);
+//
+//		TileSet set = new TileSet();
+//		set.addToSet(t1);
+//		set.addToSet(t2);
+//		set.addToSet(t3);
+//
+//		assertEquals(33, Game.getInstance().calSetValueSum(set));
+//	}
+//	
 }
