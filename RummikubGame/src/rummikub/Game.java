@@ -119,6 +119,7 @@ public class Game {
 	public int calSetValueSum(TileSet tmpTiles){
 
 	}
+<<<<<<< HEAD
 
 	public boolean checkFirstMoveSum(TileSet tmpTiles) {
 		int sum = 0;
@@ -136,4 +137,6 @@ public class Game {
 	}
 
 
+=======
+>>>>>>> master
 }
