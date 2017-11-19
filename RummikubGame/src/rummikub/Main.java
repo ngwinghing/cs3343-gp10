@@ -1,13 +1,10 @@
 package rummikub;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Main {
 
 	public static void main(String args[]) throws CloneNotSupportedException {
 
+<<<<<<< HEAD
 		String playerName;
 		Scanner scanner = new Scanner(System.in);
 		boolean replay = false;
@@ -277,9 +274,11 @@ public class Main {
 			}
 		} while (replay);
 	}
+=======
+		Game game = new Game();
+		new GameInitialize(game);
+		game.start();
+>>>>>>> master
 
-	private static void printRackLine(Player p) {
-		System.out.println("\nYour Rack: ");
-		System.out.println(p.rack);
 	}
 }

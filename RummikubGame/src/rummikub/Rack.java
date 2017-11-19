@@ -3,7 +3,7 @@ package rummikub;
 import java.util.Collections;
 import java.util.LinkedList;
 
-public class Rack {
+public class Rack{
 
 	public LinkedList<Tile> rack;
 
@@ -28,6 +28,7 @@ public class Rack {
 	}
 	
 	public void sortByNumber() {
+		Collections.sort(rack, Tile.TileColorComparator);
 		Collections.sort(rack);
 	}
 	
@@ -50,13 +51,6 @@ public class Rack {
 
 	public boolean isEmpty() {
 		if (rack.isEmpty()) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean overTwentyFour() {
-		if (rack.size()==24) {
 			return true;
 		}
 		return false;
