@@ -114,6 +114,10 @@ public class Game {
 
 	public TileSet getTileSetByIndex(int i) {
 		return pool.getTileSetByIndex(i);
+
+    	}
+	public int calSetValueSum(TileSet tmpTiles){
+
 	}
 
 	public boolean checkFirstMoveSum(TileSet tmpTiles) {
@@ -122,6 +126,14 @@ public class Game {
 		for (Tile t : set) {
 			sum += t.getValue();
 		}
-		return sum >= 30;
+		return sum;
 	}
+
+	
+
+	public static Game getInstance() {
+		return null;
+	}
+
+
 }

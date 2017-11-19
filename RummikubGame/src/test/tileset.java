@@ -138,4 +138,16 @@ public class tileset {
 
 		assertEquals(true, set.checkIfTileSetAvailable());
 	}
+	
+	@Test
+	public void test21_checkIfTileSetAvailableGroup(){
+		Tile t1 = new Tile(11, Color.Blue);
+		Tile t2 = new Tile(11, Color.Red);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+
+		assertEquals(false, set.checkIfTileSetAvailable());
+	}
 }
