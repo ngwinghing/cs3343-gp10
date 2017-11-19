@@ -85,8 +85,6 @@ public class TileSet implements Cloneable {
 
 	public boolean checkGroup() {
 		sortByNumber();
-		//count joker
-		//color -2
 		int countJoker = 0;
 		int tileValue = 0;
 		List<Color> colors = new ArrayList<>();
@@ -96,7 +94,6 @@ public class TileSet implements Cloneable {
 				tileValue = t.getValue();
 			}
 
-
 			if (t.getValue() != tileValue) {
 				if (t.getColor() != Color.Joker) {
 					return false;
@@ -104,28 +101,16 @@ public class TileSet implements Cloneable {
 			}
 
 			if (!colors.contains(t.getColor())) {
-				colors.add(t.getColor());	
+				colors.add(t.getColor());
 			}
-			
-			if(t.getColor() == Color.Joker) {
+
+			if (t.getColor() == Color.Joker) {
 				countJoker++;
 			}
 		}
 
-			
-			
-//		3 cards
-//		0J 3color
-//		1J 3color
-//		2J 2color
-//		
-//		4 cards
-//		0J 4color
-//		1J 4color
-//		2J 3color
-		
-		if  (colors.size() < 3) {
-			if(countJoker < 2) {
+		if (colors.size() < 3) {
+			if (countJoker < 2) {
 				return false;
 			}
 		}
