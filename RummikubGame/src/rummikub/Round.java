@@ -55,7 +55,7 @@ public class Round extends GameUI {
 		} while (!endTurn);
 	}
 
-	private void optionSwitch(String option) {
+	public void optionSwitch(String option) {
 		switch (option) {
 		case "1":
 			new CmdDraw(game, roundPlayer).execute();

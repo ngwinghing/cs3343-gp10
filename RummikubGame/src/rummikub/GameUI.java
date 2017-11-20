@@ -15,10 +15,9 @@ public class GameUI {
 			System.err.println("Only numbers are avaliable, please retry.");
 		} catch (IndexOutOfBoundsException e) {
 			System.err.println("Please retry with available numbers.");
-		} 
-//			catch (NullPointerException e) {
-//			System.err.println("Please input with correct array number.");
-//		}
+		} catch (NullPointerException e) {
+			System.err.println("Please input with correct array number.");
+		}
 	}
 
 	public void output() {
