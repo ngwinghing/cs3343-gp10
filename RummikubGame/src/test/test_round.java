@@ -6,6 +6,9 @@ import rummikub.*;
 import static org.junit.Assert.*;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Rule;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
@@ -70,9 +73,21 @@ public class test_round {
 		Player p1 = new Player("Test1");
 		Game game = new Game();
 		game.addPlayer(p1);
-		game.distributeTile();
+		Tile t1 = new Tile(11, Color.Black);
+		Tile t2 = new Tile(12, Color.Black);
+		Tile t3 = new Tile(13, Color.Black);
+		Tile t4 = new Tile(10, Color.Black);
+
+		TileSet sourceSet = new TileSet();
+		sourceSet.addToSet(t1);
+		sourceSet.addToSet(t2);
+		sourceSet.addToSet(t3);
 		
-		new CmdDraw(game, p1).execute();
+		List<Tile> set = new ArrayList<>();
+		set.add(t4);
+		
+		
+		new CmdAddToSet(game,p1, sourceSet, set).execute();
 
 		assertEquals(15, p1.getRackSize());
 	}
