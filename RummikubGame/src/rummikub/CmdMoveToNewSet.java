@@ -6,8 +6,8 @@ public class CmdMoveToNewSet implements Command {
 
 	Game game;
 	Player player;
-	List<Tile> tmpTiles;
 	TileSet interactSet;
+	List<Tile> tmpTiles;
 	
 	public CmdMoveToNewSet(Game game, Player player, TileSet interactSet, List<Tile> set) {
 		this.game = game;

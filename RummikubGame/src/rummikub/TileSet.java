@@ -26,6 +26,10 @@ public class TileSet implements Cloneable {
 	public List<Tile> getSets() {
 		return set;
 	}
+	
+	public int getSize() {
+		return set.size();
+	}
 
 	@Override
 	public String toString() {
