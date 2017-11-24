@@ -41,7 +41,6 @@ public class test_round {
 		assertTrue(outContent.toString().contains("Welcome, Wing"));
 	}
 	
-
 	@Test
 	public void test_round_option_02() {
 		// draw
@@ -57,7 +56,7 @@ public class test_round {
 	
 	@Test
 	public void test_round_option_03() {
-		// end turn
+		// end turn - empty
 		Player p1 = new Player("Test1");
 		Game game = new Game();
 		game.addPlayer(p1);
@@ -226,5 +225,98 @@ public class test_round {
 		assertEquals(2, sourceSet.getSize());
 		assertEquals(4, destinationSet.getSize());
 		assertEquals(t3, game.getTileSetByIndex(1).getTileByIndex(3));
+	}
+	
+	@Test
+	public void test_round_option_09() {
+		// end turn - <30
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		List<Tile> played = new ArrayList<>();
+		
+		Tile t1 = new Tile(8, Color.Blue);
+		Tile t2 = new Tile(9, Color.Blue);
+		Tile t3 = new Tile(10, Color.Blue);
+		
+		played.add(t1);
+		played.add(t2);
+		played.add(t3);
+		
+		TileSet sourceSet = new TileSet();
+		sourceSet.addToSet(t1);
+		sourceSet.addToSet(t2);
+		sourceSet.addToSet(t3);
+		
+		game.addSetsToPool(sourceSet);
+		
+		new CmdEndTurn(game, p1, played).execute();
+		assertEquals(1, p1.getRackSize());
+		assertTrue(errContent.toString().contains("The sum of sll tiles in first move should be larger than 30, please retry."));
+	}
+	
+	@Test
+	public void test_round_option_10() {
+		// end turn - >30
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		List<Tile> played = new ArrayList<>();
+		
+		Tile t1 = new Tile(10, Color.Blue);
+		Tile t2 = new Tile(11, Color.Blue);
+		Tile t3 = new Tile(12, Color.Blue);
+		
+		played.add(t1);
+		played.add(t2);
+		played.add(t3);
+		
+		TileSet sourceSet = new TileSet();
+		sourceSet.addToSet(t1);
+		sourceSet.addToSet(t2);
+		sourceSet.addToSet(t3);
+		
+		game.addSetsToPool(sourceSet);
+		
+		new CmdEndTurn(game, p1, played).execute();
+		assertEquals(0, p1.getRackSize());
+	}
+	
+	@Test
+	public void test_round_option_11() {
+		// end turn - invalid pool
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		List<Tile> played = new ArrayList<>();
+		
+		// one valid set in pool
+		Tile t1 = new Tile(10, Color.Blue);
+		Tile t2 = new Tile(11, Color.Blue);
+		Tile t3 = new Tile(12, Color.Blue);
+		
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+		
+		game.addSetsToPool(set);
+		
+		// player have 2 tiles in rack
+		Tile t4 = new Tile(10, Color.Yellow);
+		Tile t5 = new Tile(11, Color.Yellow);
+		
+		TileSet set2 = new TileSet();
+		set2.addToSet(t4);
+		set2.addToSet(t5);
+		
+		game.addSetsToPool(set2);
+		
+		played.add(t4);
+		played.add(t5);
+		
+		new CmdEndTurn(game, p1, played).execute();
+		assertEquals(2, p1.getRackSize());
+		assertTrue(errContent.toString().contains("Invalid pool, please input again next round."));
 	}
 }
