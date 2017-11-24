@@ -1,13 +1,19 @@
 package rummikub;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class GameUI {
 	
-	Scanner scanner = new Scanner(System.in);
+	Scanner scanner;
 	Game game;
 	
 	public GameUI(Game game) {
+		this(game, System.in);
+	}
+	
+	public GameUI(Game game, InputStream in) {
+		this.scanner = new Scanner(in);
 		this.game = game;
 		try {
 			output();

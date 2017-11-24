@@ -1,5 +1,6 @@
 package rummikub;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,10 @@ public class Round extends GameUI {
 
 	public Round(Game game) {
 		super(game);
+	}
+
+	public Round(Game game, InputStream stream) {
+		super(game, stream);
 	}
 
 	@Override
@@ -33,26 +38,30 @@ public class Round extends GameUI {
 		printRackLine(roundPlayer);
 
 		do {
-			System.out.println("=====================================");
-			System.out.println("Please choose your options: ");
-			System.out.println("=====================================");
-			String options = "";
-			options += "1. Draw\n";
-			options += "2. New set\n";
-			options += "3. Add tile(s) from rack to a set\n";
-			options += "4. Move tile(s) in a set to a new set\n";
-			options += "5. Move tile(s) in a set to another set\n";
-			options += "6. Reset\n";
-			options += "7. Sort by number\n";
-			options += "8. Sort by color\n";
-			options += "9. End Turn\n";
-			System.out.println(options);
-			System.out.println("-------------------------------------");
-
-			String option = scanner.nextLine();
-
-			optionSwitch(option);
+			printOptions();
 		} while (!endTurn);
+	}
+
+	private void printOptions() {
+		System.out.println("=====================================");
+		System.out.println("Please choose your options: ");
+		System.out.println("=====================================");
+		String options = "";
+		options += "1. Draw\n";
+		options += "2. New set\n";
+		options += "3. Add tile(s) from rack to a set\n";
+		options += "4. Move tile(s) in a set to a new set\n";
+		options += "5. Move tile(s) in a set to another set\n";
+		options += "6. Reset\n";
+		options += "7. Sort by number\n";
+		options += "8. Sort by color\n";
+		options += "9. End Turn\n";
+		System.out.println(options);
+		System.out.println("-------------------------------------");
+
+		String option = scanner.nextLine();
+
+		optionSwitch(option);
 	}
 
 	public void optionSwitch(String option) {
@@ -165,8 +174,9 @@ public class Round extends GameUI {
 			
 			CmdEndTurn e = new CmdEndTurn(game, roundPlayer, played);
 			e.execute();
-			if (e.getNeedBackup())
+			if (e.getNeedBackup()) {
 				backup();
+			}
 			break;
 		default:
 			System.out.println("Please input an avaliable option number.");
