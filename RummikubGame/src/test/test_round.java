@@ -91,5 +91,29 @@ public class test_round {
 
 		assertEquals(15, p1.getRackSize());
 	}
+	
+	@Test
+	public void test_round_option_05() {
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		Tile t1 = new Tile(11, Color.Black);
+		Tile t2 = new Tile(12, Color.Black);
+		Tile t3 = new Tile(13, Color.Black);
+		Tile t4 = new Tile(10, Color.Black);
+
+		TileSet sourceSet = new TileSet();
+		sourceSet.addToSet(t1);
+		sourceSet.addToSet(t2);
+		sourceSet.addToSet(t3);
+		
+		List<Tile> set = new ArrayList<>();
+		set.add(t4);
+		
+		
+		new CmdMoveToNewSet(game, p1, sourceSet, set).execute();
+
+		assertEquals(15, p1.getRackSize());
+	}
 
 }
