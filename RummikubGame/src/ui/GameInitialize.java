@@ -17,6 +17,14 @@ public class GameInitialize extends GameUI {
 
 	@Override
 	public void output() {
+		System.out.println("=====================================");
+		System.out.println("=====================================");
+		System.out.println("");
+		System.out.println("\t *** RUMMIKUB GAME ***");
+		System.out.println("");
+		System.out.println("=====================================");
+		System.out.println("=====================================");
+		System.out.println("");
 		System.out.println("\n***New Game Start!***\n");
 		String playerName = greeting();
 		Player p = new Player(playerName);
@@ -26,8 +34,7 @@ public class GameInitialize extends GameUI {
 	private String greeting() {
 		String playerName;
 		System.out.println("What's your name?");
-		//playerName = scanner.nextLine();
-		playerName = "Wing";
+		playerName = scanner.nextLine();
 
 		System.out.println("Welcome, " + playerName);
 		return playerName;

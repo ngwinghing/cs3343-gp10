@@ -15,7 +15,7 @@ public class Round extends GameUI {
 	boolean moved = false;
 
 	Pool backUpPool;
-	List<Tile> played;
+	protected List<Tile> played;
 
 	public Round(Game game) {
 		this(game, System.in);

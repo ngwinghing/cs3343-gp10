@@ -353,7 +353,6 @@ public class test_command {
 	public void test_round_13() throws Exception {
 		Player p1 = new Player("Test1");
 		Game game = new Game();
-		game.addPlayer(p1);
 		
 		class RoundStub extends Round {
 			public RoundStub(Game game, InputStream stream) {
