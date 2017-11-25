@@ -4,8 +4,7 @@ import java.util.List;
 
 import rummikub.Game;
 import rummikub.Player;
-import tile.Tile;
-import tile.TileSet;
+import tile.*;
 
 public class CmdMoveToNewSet implements Command {
 
