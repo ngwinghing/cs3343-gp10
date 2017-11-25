@@ -1,4 +1,8 @@
-package rummikub;
+package command;
+
+import rummikub.Game;
+import rummikub.Player;
+import tile.TileSet;
 
 public class CmdNewSet implements Command {
 

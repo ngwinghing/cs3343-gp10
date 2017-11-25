@@ -12,9 +12,21 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import rummikub.*;
 
-public class test_round {
+import command.CmdAddToSet;
+import command.CmdDraw;
+import command.CmdEndTurn;
+import command.CmdMoveToExitingSet;
+import command.CmdMoveToNewSet;
+import command.CmdNewSet;
+import rummikub.*;
+import tile.Color;
+import tile.Tile;
+import tile.TileSet;
+import ui.GameInitialize;
+import ui.Round;
+
+public class test_command {
 	
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -293,7 +305,7 @@ public class test_round {
 		// one valid set in pool
 		Tile t1 = new Tile(10, Color.Blue);
 		Tile t2 = new Tile(11, Color.Blue);
-		Tile t3 = new Tile(12, Color.Blue);
+		Tile t3 = new Tile(12, Color.Joker);
 		
 		TileSet set = new TileSet();
 		set.addToSet(t1);
@@ -302,21 +314,129 @@ public class test_round {
 		
 		game.addSetsToPool(set);
 		
-		// player have 2 tiles in rack
+		// player have 3 tiles in rack
 		Tile t4 = new Tile(10, Color.Yellow);
 		Tile t5 = new Tile(11, Color.Yellow);
+		Tile t6 = new Tile(11, Color.Yellow);
 		
 		TileSet set2 = new TileSet();
 		set2.addToSet(t4);
 		set2.addToSet(t5);
+		set2.addToSet(t6);
 		
 		game.addSetsToPool(set2);
 		
 		played.add(t4);
 		played.add(t5);
+		played.add(t6);
 		
 		new CmdEndTurn(game, p1, played).execute();
-		assertEquals(2, p1.getRackSize());
+		assertTrue(outContent.toString().contains("As you have not move any tile, draw one tile for this round."));
+		assertEquals(1, p1.getRackSize());
 		assertTrue(errContent.toString().contains("Invalid pool, please input again next round."));
+	}
+	
+	@Test
+	public void test_round_option_12() {
+		// end turn - empty pool
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		List<Tile> played = new ArrayList<>();
+		
+		new CmdEndTurn(game, p1, played).execute();
+		assertTrue(outContent.toString().contains("As you have not move any tile, draw one tile for this round."));
+		assertEquals(1, p1.getRackSize());
+	}
+	
+	@Test
+	public void test_round_13() throws Exception {
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		
+		class RoundStub extends Round {
+			public RoundStub(Game game, InputStream stream) {
+				super(game, stream);
+			}
+
+			@Override
+			public void output() {
+				printOptions();
+			}
+		}
+		
+		String str = "1234";
+		InputStream stream = new ByteArrayInputStream(str.getBytes());
+		
+		Round r = new RoundStub(game, stream);
+		assertTrue(outContent.toString().contains("Please input an avaliable option number."));
+	}
+	
+	@Test
+	public void test_round_14() throws Exception {
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		
+		Tile t1 = new Tile(10, Color.Blue);
+		p1.addTileToRack(t1);
+		
+		class RoundStub extends Round {
+			public RoundStub(Game game, InputStream stream) {
+				super(game, stream);
+			}
+
+			@Override
+			public void output() {
+				printOptions();
+			}
+			
+			@Override
+			public void optionSwitch(String option) {
+				if (option.equals("1")) {
+					System.out.println("received");
+				}
+			}
+		}
+		
+		String str = "1";
+		InputStream stream = new ByteArrayInputStream(str.getBytes());
+		
+		Round r = new RoundStub(game, stream);
+		assertTrue(outContent.toString().contains("received"));
+	}
+	
+
+	@Test
+	public void test_round_optionSwitch_15() throws Exception {
+		Player p1 = new Player("Test1");
+		Game game = new Game();
+		game.addPlayer(p1);
+		
+		Tile t1 = new Tile(10, Color.Blue);
+		p1.addTileToRack(t1);
+		
+
+		class RoundStub extends Round {
+			public RoundStub(Game game, InputStream stream) {
+				super(game, stream);
+			}
+
+			public RoundStub(Game game) {
+				super(game);
+			}
+
+			@Override
+			public void output() {
+				roundPlayer = game.getRoundPlayer();
+			}
+		}
+		
+		Round r = new RoundStub(game);
+		
+		r.optionSwitch("1");
+		assertEquals(2, p1.getRackSize());
+		assertEquals(true, r.getEndTurn());
 	}
 }

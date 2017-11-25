@@ -3,6 +3,9 @@ package rummikub;
 import java.util.ArrayList;
 import java.util.List;
 
+import tile.Tile;
+import tile.TileSet;
+
 //a class that contains the tiles that the player played
 
 public class Pool {

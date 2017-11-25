@@ -3,9 +3,12 @@ package rummikub;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import tile.Color;
+import tile.Tile;
+
 public class AllTiles {
 	
-	private LinkedList<Tile> allTiles = new LinkedList<Tile>();
+	protected LinkedList<Tile> allTiles = new LinkedList<Tile>();
 
 	// constructor
 	public AllTiles() {

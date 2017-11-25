@@ -1,4 +1,4 @@
-package rummikub;
+package tile;
 
 public enum Color {
 	Black, Blue, Red, Yellow, Joker;

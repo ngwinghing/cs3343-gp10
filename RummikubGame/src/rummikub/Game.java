@@ -3,6 +3,9 @@ package rummikub;
 import java.util.ArrayList;
 import java.util.List;
 
+import tile.*;
+import ui.*;
+
 public class Game {
 	private static List<Player> players;
 	private static AllTiles allTiles;
@@ -89,15 +92,6 @@ public class Game {
 			System.out.println("\n################ ROUND ################");	
 			new Round(this);
 		} while (notEnd());
-		
-		endGame();
-	}
-
-	public void endGame() {
-		// reset all
-		players.removeAll(players);
-		allTiles = new AllTiles();
-		pool = new Pool();
 	}
 
 	public boolean validPool() {

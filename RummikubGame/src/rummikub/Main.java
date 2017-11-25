@@ -1,5 +1,7 @@
 package rummikub;
 
+import ui.GameInitialize;
+
 public class Main {
 
 	public static void main(String args[]) throws CloneNotSupportedException {

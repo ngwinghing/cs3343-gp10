@@ -1,8 +1,11 @@
 package rummikub;
 
+import tile.Tile;
+import tile.TileSet;
+
 public class Player {
 	String name;
-	Rack rack;
+	public Rack rack;
 	boolean firstMove = true;
 
 	public Player(String name) {

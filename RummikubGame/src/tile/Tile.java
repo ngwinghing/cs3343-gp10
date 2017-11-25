@@ -1,4 +1,4 @@
-package rummikub;
+package tile;
 
 import java.util.Comparator;
 

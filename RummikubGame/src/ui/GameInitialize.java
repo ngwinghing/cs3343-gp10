@@ -1,6 +1,9 @@
-package rummikub;
+package ui;
 
 import java.io.InputStream;
+
+import rummikub.Game;
+import rummikub.Player;
 
 public class GameInitialize extends GameUI {
 
@@ -23,8 +26,8 @@ public class GameInitialize extends GameUI {
 	private String greeting() {
 		String playerName;
 		System.out.println("What's your name?");
-		playerName = scanner.nextLine();
-		//playerName = "Wing";
+		//playerName = scanner.nextLine();
+		playerName = "Wing";
 
 		System.out.println("Welcome, " + playerName);
 		return playerName;

@@ -3,6 +3,8 @@ package rummikub;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import tile.Tile;
+
 public class Rack{
 
 	public LinkedList<Tile> rack;

@@ -4,6 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import rummikub.*;
+import tile.Color;
+import tile.Tile;
+import tile.TileSet;
+
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;

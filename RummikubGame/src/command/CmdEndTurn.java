@@ -1,6 +1,10 @@
-package rummikub;
+package command;
 
 import java.util.List;
+
+import rummikub.Game;
+import rummikub.Player;
+import tile.Tile;
 
 public class CmdEndTurn implements Command {
 
@@ -19,6 +23,9 @@ public class CmdEndTurn implements Command {
 		if (game.emptyPool()) {
 			needBackup = false;
 			drawWithError();
+		} else if (!game.validPool()) {
+			System.err.println("Invalid pool, please input again next round.");
+			drawWithError();
 		} else if (roundPlayer.isFirstMove()) {
 			int setSum = 0;
 			for (Tile t : played) {
@@ -30,10 +37,7 @@ public class CmdEndTurn implements Command {
 			} else {
 				roundPlayer.changeFirstMove();
 			}
-		} else if (!game.validPool()) {
-			System.err.println("Invalid pool, please input again next round.");
-			drawWithError();
-		}
+		} 
 	}
 
 	private void drawWithError() {

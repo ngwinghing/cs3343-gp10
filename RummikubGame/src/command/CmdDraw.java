@@ -1,4 +1,7 @@
-package rummikub;
+package command;
+
+import rummikub.Game;
+import rummikub.Player;
 
 public class CmdDraw implements Command {
 
@@ -9,8 +12,7 @@ public class CmdDraw implements Command {
 		this.game = game;
 		this.player = player;
 	}
-	
-	@Override
+
 	public void execute() {
 		game.draw(player);
 	}

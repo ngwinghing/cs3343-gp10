@@ -2,6 +2,8 @@ package test;
 
 import org.junit.Test;
 import rummikub.*;
+import tile.Tile;
+
 import static org.junit.Assert.*;
 
 public class test {
