@@ -1,46 +1,19 @@
 package test;
 
 import org.junit.Test;
+
+import command.CmdEndTurn;
 import rummikub.*;
-import tile.Tile;
+import tile.*;
+import ui.Round;
 
 import static org.junit.Assert.*;
 
-public class test {
-//	@Test
-//	public void test08_checkFirstMoveSumValid() {
-//		Tile t1 = new Tile(1, Color.Red);
-//		Tile t2 = new Tile(1, Color.Black);
-//		Tile t3 = new Tile(1, Color.Blue);
-//
-//		TileSet set = new TileSet();
-//		Game game = new Game();
-//		set.addToSet(t1);
-//		set.addToSet(t2);
-//		set.addToSet(t3);
-//
-//		assertEquals(false, game.checkFirstMoveSum(set));
-//	}
-//
-//	@Test
-//	public void test09_checkFirstMoveSumValid() {
-//		Tile t1 = new Tile(11, Color.Black);
-//		Tile t2 = new Tile(12, Color.Black);
-//		Tile t3 = new Tile(13, Color.Black);
-//
-//		TileSet set = new TileSet();
-//		Game game = new Game();
-//		set.addToSet(t1);
-//		set.addToSet(t2);
-//		set.addToSet(t3);
-//		
-//		boolean result = game.checkFirstMoveSum(set);
-//
-//		assertEquals(true, result);
-//	}
+import java.io.InputStream;
 
+public class test {
 	@Test
-	public void test10_draw() {
+	public void test_draw() {
 		Player p = new Player("Test");
 		Game game = new Game();
 		Tile first = game.getTileFromAllTiles(0);
@@ -54,7 +27,7 @@ public class test {
 	}
 
 	@Test
-	public void test13_distribute() {
+	public void test_distribute() {
 		Player p = new Player("Test");
 		Game game = new Game();
 		game.addPlayer(p);
@@ -66,18 +39,53 @@ public class test {
 		assertEquals(second, p.getTileByIndex(1));
 	}
 	
-//	@Test
-//	public void test22_calSetValueSum(){
-//		Tile t1 = new Tile(11, Color.Blue);
-//		Tile t2 = new Tile(11, Color.Red);
-//		Tile t3 = new Tile(11, Color.Black);
-//
-//		TileSet set = new TileSet();
-//		set.addToSet(t1);
-//		set.addToSet(t2);
-//		set.addToSet(t3);
-//
-//		assertEquals(33, Game.getInstance().calSetValueSum(set));
-//	}
-//	
+	@Test
+	public void test_calSetValueSum_01(){
+		Player p = new Player("Test");
+		Game game = new Game();
+		game.addPlayer(p);
+		
+		Tile t1 = new Tile(11, Color.Blue);
+		Tile t2 = new Tile(11, Color.Red);
+		Tile t3 = new Tile(11, Color.Black);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+		
+		game.addSetsToPool(set);
+
+		CmdEndTurn e = new CmdEndTurn(game, p, set.getSets());
+		e.execute();
+		
+		assertEquals(false, p.isFirstMove());
+		assertEquals(false, e.getNeedBackup());
+	}
+	
+	@Test
+	public void test_calSetValueSum_02(){
+		Player p = new Player("Test");
+		Game game = new Game();
+		game.addPlayer(p);
+		
+		Tile t1 = new Tile(1, Color.Blue);
+		Tile t2 = new Tile(1, Color.Red);
+		Tile t3 = new Tile(1, Color.Black);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+		
+		game.addSetsToPool(set);
+
+		CmdEndTurn e = new CmdEndTurn(game, p, set.getSets());
+		e.execute();
+		
+		assertEquals(true, p.isFirstMove());
+		assertEquals(1, p.getRackSize());
+		assertEquals(true, e.getNeedBackup());
+	}
+	
 }

@@ -36,6 +36,7 @@ public class CmdEndTurn implements Command {
 				System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
 			} else {
 				roundPlayer.changeFirstMove();
+				needBackup = false;
 			}
 		} 
 	}
