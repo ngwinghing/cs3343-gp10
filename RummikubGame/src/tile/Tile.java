@@ -29,7 +29,8 @@ public class Tile implements Comparable<Tile> {
 		if (this.color.equals(Color.Joker)) {
 			return "[ " + color + " ] ";
 		} else {
-			return "[ " + color + " " + value + " ] ";
+			
+			return "[ " + value + " " + color + " ] ";
 		}
 	}
 

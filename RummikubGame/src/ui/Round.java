@@ -27,6 +27,9 @@ public class Round extends GameUI {
 
 	@Override
 	public void output() {
+		roundPlayer = game.getRoundPlayer();
+		System.out.println("Round Player: " + game.getRoundPlayer().getName());
+		
 		System.out.println("\nPool: ");
 		game.printPool();
 		played = new ArrayList<>();
@@ -36,8 +39,6 @@ public class Round extends GameUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		roundPlayer = game.getRoundPlayer();
 		
 		printRackLine(roundPlayer);
 
@@ -222,6 +223,7 @@ public class Round extends GameUI {
 		for (Tile t : played) {
 			roundPlayer.addTileToRack(t);
 		}
+		played.clear();
 	}
 
 	private static void printRackLine(Player roundPlayer) {

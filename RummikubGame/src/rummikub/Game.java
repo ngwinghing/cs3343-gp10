@@ -90,6 +90,7 @@ public class Game {
 		distributeTile();
 		do {
 			System.out.println("\n################ ROUND ################");	
+			round++;
 			new Round(this);
 		} while (notEnd());
 	}

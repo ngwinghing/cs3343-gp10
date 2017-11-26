@@ -45,12 +45,12 @@ public class test_command {
 	
 	@Test
 	public void test_game_01() throws Exception {
-		String str = "Wing";
+		String str = "1 \n Test1";
 		InputStream stream = new ByteArrayInputStream(str.getBytes());
 		
 		Game game = new Game();
 		new GameInitialize(game, stream);
-		assertTrue(outContent.toString().contains("Welcome, Wing"));
+		assertTrue(outContent.toString().contains("Welcome, Test1"));
 	}
 	
 	@Test

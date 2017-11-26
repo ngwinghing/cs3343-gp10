@@ -54,9 +54,9 @@ public class test_pool {
 		
 		System.out.println(p);
 		assertEquals(false, p.isEmpty());
-		assertTrue(outContent.toString().contains("[ Blue 11 ]"));
-		assertTrue(outContent.toString().contains("[ Blue 12 ]"));
-		assertTrue(outContent.toString().contains("[ Blue 13 ]"));
+		assertTrue(outContent.toString().contains("[ 11 Blue ]"));
+		assertTrue(outContent.toString().contains("[ 12 Blue ]"));
+		assertTrue(outContent.toString().contains("[ 13 Blue ]"));
 	}
 	
 	@Test
