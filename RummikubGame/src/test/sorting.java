@@ -232,12 +232,12 @@ public class sorting {
 	}
 	
 	@Test
-	public void test_colorsort_10() {
+	public void test_numbersort_10() {
 		Rack rackv1 = new Rack();
 		Tile t1 = new Tile(Color.Joker);
 		Tile t2 = new Tile(4, Color.Red);
 		Tile t3 = new Tile(3, Color.Red);
-		Tile t4 = new Tile(2, Color.Red);
+		Tile t4 = new Tile(4, Color.Red);
 		Tile t5 = new Tile(1, Color.Red);
 		rackv1.addTile(t1);
 		rackv1.addTile(t2);
@@ -253,9 +253,9 @@ public class sorting {
 		Tile resv5 = rackv1.getTile(4);
 
 		assertEquals(resv1, t5);
-		assertEquals(resv2, t4);
-		assertEquals(resv3, t3);
-		assertEquals(resv4, t2);
+		assertEquals(resv2, t3);
+		assertEquals(resv3, t2);
+		assertEquals(resv4, t4);
 		assertEquals(resv5, t1);
 	}
 	

@@ -2,14 +2,12 @@ package test;
 
 import org.junit.Test;
 
-import command.CmdEndTurn;
+import command.*;
 import rummikub.*;
 import tile.*;
-import ui.Round;
+import ui.*;
 
 import static org.junit.Assert.*;
-
-import java.io.InputStream;
 
 public class test {
 	@Test
@@ -61,31 +59,5 @@ public class test {
 		
 		assertEquals(false, p.isFirstMove());
 		assertEquals(false, e.getNeedBackup());
-	}
-	
-	@Test
-	public void test_calSetValueSum_02(){
-		Player p = new Player("Test");
-		Game game = new Game();
-		game.addPlayer(p);
-		
-		Tile t1 = new Tile(1, Color.Blue);
-		Tile t2 = new Tile(1, Color.Red);
-		Tile t3 = new Tile(1, Color.Black);
-
-		TileSet set = new TileSet();
-		set.addToSet(t1);
-		set.addToSet(t2);
-		set.addToSet(t3);
-		
-		game.addSetsToPool(set);
-
-		CmdEndTurn e = new CmdEndTurn(game, p, set.getSets());
-		e.execute();
-		
-		assertEquals(true, p.isFirstMove());
-		assertEquals(1, p.getRackSize());
-		assertEquals(true, e.getNeedBackup());
-	}
-	
+	}	
 }

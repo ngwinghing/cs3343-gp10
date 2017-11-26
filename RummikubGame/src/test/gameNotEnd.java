@@ -2,6 +2,9 @@ package test;
 
 import org.junit.Test;
 import rummikub.*;
+import tile.Tile;
+import tile.TileSet;
+
 import static org.junit.Assert.*;
 
 public class gameNotEnd {

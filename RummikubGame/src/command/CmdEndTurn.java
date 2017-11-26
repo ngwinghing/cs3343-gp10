@@ -1,10 +1,10 @@
 package command;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import rummikub.Game;
-import rummikub.Player;
-import tile.Tile;
+import rummikub.*;
+import tile.*;
 
 public class CmdEndTurn implements Command {
 

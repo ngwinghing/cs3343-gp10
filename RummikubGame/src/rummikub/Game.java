@@ -8,7 +8,7 @@ import ui.*;
 
 public class Game {
 	private static List<Player> players;
-	private static AllTiles allTiles;
+	private AllTiles allTiles;
 	private Pool pool;
 	private int round = 0;
 
@@ -63,16 +63,16 @@ public class Game {
 	}
 
 	public boolean notEnd() {
-		if (allTiles.isEmpty()) {
-			System.out.println("All tiles were drawn.");
-			return false;
-		}
-
 		for (Player p : players) {
 			if (p.notHavingTilesInRack()) {
 				System.out.println("Used all tiles from rack, win!");
 				return false;
 			}
+		} 
+		
+		if (allTiles.isEmpty()) {
+			System.out.println("All tiles were drawn.");
+			return false;
 		}
 		return true;
 	}
