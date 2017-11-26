@@ -27,6 +27,7 @@ public class CmdAddToSet implements Command {
 			interactSet.addToSet(t);
 			player.removeTile(t);
 		}
+		interactSet.sortByNumber();
 	}
 
 }
