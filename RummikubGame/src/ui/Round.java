@@ -36,7 +36,6 @@ public class Round extends GameUI {
 		try {
 			backUpPool = game.getPool().clone();
 		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

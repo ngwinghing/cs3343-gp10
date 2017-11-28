@@ -118,11 +118,11 @@ public class test_pool {
 		Tile t6 = new Tile(13, Color.Yellow);
 
 		TileSet set2 = new TileSet();
-		set.addToSet(t4);
-		set.addToSet(t5);
-		set.addToSet(t6);
+		set2.addToSet(t4);
+		set2.addToSet(t5);
+		set2.addToSet(t6);
 		
-		p.addSetToPool(set);
+		p.addSetToPool(set2);
 		
 		assertEquals(false, p.valid());
 	}

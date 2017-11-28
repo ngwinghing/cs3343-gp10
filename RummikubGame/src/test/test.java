@@ -5,7 +5,6 @@ import org.junit.Test;
 import command.*;
 import rummikub.*;
 import tile.*;
-import ui.*;
 
 import static org.junit.Assert.*;
 

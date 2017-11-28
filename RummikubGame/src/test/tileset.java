@@ -1,7 +1,6 @@
 package test;
 
 import org.junit.Test;
-import rummikub.*;
 import tile.Color;
 import tile.Tile;
 import tile.TileSet;
