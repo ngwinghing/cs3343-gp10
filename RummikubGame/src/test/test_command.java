@@ -265,7 +265,7 @@ public class test_command {
 		new CmdEndTurn(game, p1, played).execute();
 		assertEquals(1, p1.getRackSize());
 		assertTrue(errContent.toString()
-				.contains("The sum of sll tiles in first move should be larger than 30, please retry."));
+				.contains("The sum of all tiles in first move should be larger than 30, please retry."));
 	}
 
 	@Test
