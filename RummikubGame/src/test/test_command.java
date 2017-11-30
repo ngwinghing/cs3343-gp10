@@ -349,7 +349,7 @@ public class test_command {
 		// one valid set in pool
 		Tile t1 = new Tile(10, Color.Blue);
 		Tile t2 = new Tile(11, Color.Blue);
-		Tile t3 = new Tile(12, Color.Joker);
+		Tile t3 = new Tile(Color.Joker);
 
 		TileSet set = new TileSet();
 		set.addToSet(t1);
