@@ -36,7 +36,7 @@ public class CmdEndTurn implements Command {
 			}
 			if (setSum < 30) {
 				drawWithError();
-				System.err.println("The sum of sll tiles in first move should be larger than 30, please retry.");
+				System.err.println("The sum of all tiles in first move should be larger than 30, please retry.");
 				needBackup = true;
 			} else {
 				roundPlayer.changeFirstMove();
