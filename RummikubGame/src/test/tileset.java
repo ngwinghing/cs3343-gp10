@@ -243,7 +243,7 @@ public class tileset {
 	}
 	
 	@Test
-	public void test17_checkIfTileSetAvailableBoth_18(){
+	public void test_checkIfTileSetAvailableBoth_18(){
 		Tile t1 = new Tile(11, Color.Blue);
 		Tile t2 = new Tile(12, Color.Blue);
 		Tile t3 = new Tile(13, Color.Blue);
