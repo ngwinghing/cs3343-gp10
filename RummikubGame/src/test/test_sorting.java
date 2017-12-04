@@ -6,7 +6,7 @@ import tile.*;
 
 import static org.junit.Assert.*;
 
-public class sorting {
+public class test_sorting {
 	@Test
 	public void test01_colorsort() {
 		Rack rackv1 = new Rack();

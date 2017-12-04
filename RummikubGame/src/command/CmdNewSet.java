@@ -32,4 +32,8 @@ public class CmdNewSet implements Command {
 			System.err.println("Please input valid set again.");
 		}
 	}
+	
+	public boolean getValid() {
+		return valid;
+	}
 }

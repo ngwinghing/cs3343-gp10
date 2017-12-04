@@ -14,7 +14,7 @@ public class Round extends GameUI {
 	public boolean endTurn = false;
 	boolean moved = false;
 
-	Pool backUpPool;
+	protected Pool backUpPool;
 	protected List<Tile> played;
 
 	public Round(Game game) {
@@ -121,6 +121,10 @@ public class Round extends GameUI {
 		if (e.getNeedBackup()) {
 			backup();
 		}
+		if (e.getNeedDraw()) {
+			game.draw(roundPlayer);
+			System.out.println("\n ** As you have not move any tile, draw one tile for this round.");
+		}
 	}
 
 	private void moveToExistingSet() {
@@ -208,7 +212,13 @@ public class Round extends GameUI {
 			played.add(t);
 		}
 		
-		new CmdNewSet(game, roundPlayer, tmpTiles).execute();
+		CmdNewSet e = new CmdNewSet(game, roundPlayer, tmpTiles);
+		e.execute();
+		
+		if (!e.getValid()) {
+			for (Tile t: tmpTiles.getSets())
+				played.remove(t);
+		}
 	}
 
 	private void draw() {

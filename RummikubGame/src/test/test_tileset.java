@@ -7,7 +7,7 @@ import tile.TileSet;
 
 import static org.junit.Assert.*;
 
-public class tileset {
+public class test_tileset {
 	@Test
 	public void test_checkIfTileSetAvailableGroup_01() {
 		Tile t1 = new Tile(1, Color.Red);

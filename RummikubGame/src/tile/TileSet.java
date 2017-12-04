@@ -37,9 +37,9 @@ public class TileSet implements Cloneable {
 		for (Tile t : set) {
 			output += t + " ";
 		}
-		if (output == "") {
-			return "No Tile.";
-		}
+//		if (output == "") {
+//			return "No Tile.";
+//		}
 		return output;
 	}
 

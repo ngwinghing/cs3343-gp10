@@ -127,5 +127,29 @@ public class test_pool {
 		assertEquals(false, p.valid());
 	}
 	
-	
+	@Test
+	public void test_pool_06() {
+		// tile in pool - ui
+		Pool p = new Pool();
+		
+		Tile t1 = new Tile(1, Color.Black);
+		Tile t2 = new Tile(1, Color.Yellow);
+		Tile t3 = new Tile(1, Color.Red);
+		Tile t4 = new Tile(Color.Joker);
+
+		TileSet set = new TileSet();
+		set.addToSet(t1);
+		set.addToSet(t2);
+		set.addToSet(t3);
+		set.addToSet(t4);
+		
+		p.addSetToPool(set);
+		
+		System.out.println(p);
+		assertEquals(false, p.isEmpty());
+		assertTrue(outContent.toString().contains("[ 1 Black ]"));
+		assertTrue(outContent.toString().contains("[ 1 Yellow ]"));
+		assertTrue(outContent.toString().contains("[ 1 Red ]"));
+		assertTrue(outContent.toString().contains("[ Joker ]"));
+	}
 }

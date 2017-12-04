@@ -11,6 +11,7 @@ public class CmdEndTurn implements Command {
 	Player roundPlayer;
 	List<Tile> played;
 	boolean needBackup = false;
+	boolean needDraw = false;
 
 	public CmdEndTurn(Game game, Player roundPlayer, List<Tile> played) {
 		this.game = game;
@@ -20,14 +21,14 @@ public class CmdEndTurn implements Command {
 
 	public void execute() {
 		if (game.emptyPool()) {
-			drawWithError();
+			needDraw = true;
 			needBackup = false;
 		} else if (played.isEmpty()) {
-			drawWithError();
+			needDraw = true;
 			needBackup = true;
 		} else if (!game.validPool()) {
 			System.err.println("Invalid pool, please input again next round.");
-			drawWithError();
+			needDraw = true;
 			needBackup = true;
 		} else if (roundPlayer.isFirstMove()) {
 			int setSum = 0;
@@ -35,7 +36,7 @@ public class CmdEndTurn implements Command {
 				setSum += t.getValue();
 			}
 			if (setSum < 30) {
-				drawWithError();
+				needDraw = true;
 				System.err.println("The sum of all tiles in first move should be larger than 30, please retry.");
 				needBackup = true;
 			} else {
@@ -44,13 +45,12 @@ public class CmdEndTurn implements Command {
 		}
 	}
 
-	private void drawWithError() {
-		game.draw(roundPlayer);
-		System.out.println("\n ** As you have not move any tile, draw one tile for this round.");
-	}
-
 	public boolean getNeedBackup() {
 		return needBackup;
+	}
+	
+	public boolean getNeedDraw() {
+		return needDraw;
 	}
 
 }

@@ -4,7 +4,7 @@ import org.junit.Test;
 import rummikub.*;
 import static org.junit.Assert.*;
 
-public class gamePlayerRound {
+public class test_gamePlayerRound {
 	@Test
 	public void test_playerRound_01() {
 		Player p1 = new Player("Test1");

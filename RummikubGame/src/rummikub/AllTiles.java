@@ -40,13 +40,6 @@ public class AllTiles {
 			return true;
 		return false;
 	}
-	
-	public @Override String toString() {
-		for (Tile t: allTiles) {
-			System.out.println(t);
-		}
-		return "";	
-	}
 
 	public Tile getTile(int i) {
 		return allTiles.get(i);
